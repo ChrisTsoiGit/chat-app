@@ -2,17 +2,56 @@
 
 <br>
 
-### 1. Create a post:
+### 1. Contacts list:
+
+- Endpoint path: /contacts
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: A list of contacts
+- Response shape:
+  ```json
+  {
+    "contacts": [
+      {
+        "avatar_url": string,
+        "contact_name": string,
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 2. Chats history:
+
+- Endpoint path: /chats
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: chats history
+- Response shape:
+  ```json
+  {
+    "chats": [
+      {
+        "avatar_url": string,
+        "contact_name": string,
+        "msg_preview": string,
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 3. Create a post:
 
 - Endpoint path: /Moments
 - Endpoint method: POST
-
 - Headers:
-
   - Authorization: Bearer token
-
 - Request body:
-
   ```json
   {
     "post": [
@@ -22,12 +61,11 @@
         "post_text": string,
         "image_url": string,
         "video_url": string,
-        "time_stamp": string,  <!-- "2022-10-01" ?????? -->
+        "time_stamp": string,  <!-- "2022-10-01" ??????? -->
       }
     ]
   }
   ```
-
 - Response: An indication of success or failure
 - Response shape:
   ```json
@@ -39,18 +77,14 @@
 
 <br>
 
-### 2. [stretch goal] Moments - list of posts:
+### 4. [stretch goal] Moments - list of posts:
 
 - Endpoint path: /moments
 - Endpoint method: GET
-
 - Headers:
-
   - Authorization: Bearer token
-
 - Response: A list of posts
 - Response shape:
-
   ```json
   {
     "moments": [
@@ -61,7 +95,35 @@
         "image_url": string,
         "video_url": string,
         "time_stamp": string,
-        "likes": number
+        "likes": number  <!-- ??????? -->
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 5. Profile page - create post & post history:
+
+- Endpoint path: /user <!-- ??????? -->
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: the user detail
+- Response shape:
+  ```json
+  {
+    "user": [
+      {
+        "username": string,
+        "log_out": button,  <!-- ??????? -->
+        "create_post": {
+          "post_content": text,
+          "image_url": string,
+          "video_url": string,
+          "time_stamp": string,  <!-- "2022-10-01 14:30:00" ??????? -->
+        },
+        "posts_history": dictionary,  <!-- ??????? -->
       }
     ]
   }
@@ -79,15 +141,11 @@
 
 - Endpoint path: /token
 - Endpoint method: POST
-
 - Request shape (form):
-
   - username: string
   - password: string
-
 - Response: Account information and a token
 - Response shape (JSON):
-
   ```json
   {
     "account": {
@@ -104,14 +162,10 @@
 
 - Endpoint path: /token
 - Endpoint method: DELETE
-
 - Headers:
-
   - Authorization: Bearer token
-
 - Response: Always true
 - Response shape (JSON):
-
   ```json
   true
   ```
@@ -140,20 +194,14 @@
 - Endpoint path: «path to use»
 - Endpoint method: «HTTP method»
 - Query parameters:
-
   - «name»: «purpose»
-
 - Headers:
-
   - Authorization: Bearer token
-
 - Request shape (JSON):
-
   ```json
   «JSON-looking thing that has the
   keys and types in it»
   ```
-
 - Response: «Human-readable description
   of response»
 - Response shape (JSON):
