@@ -1,7 +1,7 @@
 # SafeChat - a social platform with secure chat & share
 
 - Project name: SafeChat
-- Time: 9/26/2022 - 11/1/2022
+- Time: 9/26/2022 - 10/227/2022
 - Purposes:
   - demonstrate ability to use fastAPI in microservices
   - demonstrate ability to use MongoDB to ...
@@ -16,7 +16,7 @@
 
 ## Overview:
 
-- Wire-frame diagrams:
+- Wire-frame diagram:
   ![Wire-frame diagrams](/images/wireframe.png)
 
 - App preview:

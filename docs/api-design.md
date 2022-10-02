@@ -56,12 +56,12 @@
   {
     "post": [
         {
-        "avatar_url": string,
-        "contact_name": string,
+        "avatar_url": string,  <!-- necessary ??????? -->
+        "contact_name": string,  <!-- necessary ??????? -->
         "post_text": string,
         "image_url": string,
         "video_url": string,
-        "time_stamp": string,  <!-- "2022-10-01" ??????? -->
+        "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
       }
     ]
   }
@@ -74,8 +74,7 @@
     "message": string
   }
   ```
-
-<br>
+  <br>
 
 ### 4. [stretch goal] Moments - list of posts:
 
@@ -95,7 +94,7 @@
         "image_url": string,
         "video_url": string,
         "time_stamp": string,
-        "likes": number  <!-- ??????? -->
+        "likes": smallint  <!-- -32768 to +32767 ??????? -->
       }
     ]
   }
@@ -121,7 +120,7 @@
           "post_content": text,
           "image_url": string,
           "video_url": string,
-          "time_stamp": string,  <!-- "2022-10-01 14:30:00" ??????? -->
+          "time_stamp": timestamp,  <!-- or string ??????? -->
         },
         "posts_history": dictionary,  <!-- ??????? -->
       }
