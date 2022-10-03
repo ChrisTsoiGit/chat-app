@@ -40,7 +40,7 @@
 
 1. Creates a dev-branch:
 
-   ```
+   ```python
    (main) $ git checkout -b my-branch  # create and change to a new branch
    (my-branch) $  # <-- hey look, I'm in my new branch
    ```
@@ -48,7 +48,7 @@
 2. Now each team member can mangle all they want without affecting the main branch or anyone else's dev-branch
 3. When a team member's branch is at a stable state and ready to be pushed to the main branch, follow these steps:
 
-   ```
+   ```python
    (my-branch) $ git checkout main    # switch to main branch
    (main) $ git pull                  # get latest from remote
    (main) $ git checkout my-branch    # switch to dev branch
@@ -68,7 +68,62 @@
 
 ---
 
-## Test & Deploy
+## Virtual environment & FastAPI installation:
+
+- FastAPI
+  - fastapienv
+    - bin
+    - lib
+  - chats.py
+
+1. change shell from zsh to bash:
+
+   ```python
+   chsh -s /bin/bash
+   ```
+
+2. create virtual environment with project directory:
+
+   ```python
+   cd desktop
+   mkdir FastAPI
+   cd FastAPI
+   pip list  # check if virtualenv is already install
+   pip install virtualenv  # if not, install virtualenv
+   python -m venv .fastapienv  # create virtualEnv for fastapienv
+   # activate virtualEnv:
+   source .fastapienv/bin/activate
+   # [OPTIONAL] deactivate virtualEnv:
+   source .fastapienv/bin/deactivate
+   ```
+
+3. install all of the dependencies for FastAPI:
+
+   ```python
+   cd FastAPI
+   pip install fastapi[all]
+   ```
+
+   then close and reopen the terminal
+
+4. create chats.py and edit:
+
+```python
+from fastapi import FastAPI  # import FastAPI into chats.py
+my_app = FastAPI()  # create fastAPI application, chat_app
+# decorator: all GET requests to the "<<...>>" path should be handled by the upcoming function
+@my_app.post("/api/test")
+async def first_api():
+    return {"message": "Hello FastAPI"}
+
+# start application: run uvicorn & start relooader and server process
+uvicorn chats:my_app --reload
+# uvicorn running on http://127.0.0.1:8000 & shows {"message": "Hello FastAPI"}
+```
+
+---
+
+## Test & Deploy:
 
 ---
 
