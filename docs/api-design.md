@@ -2,16 +2,16 @@
 
 <br>
 
-- [x] Use the following template to describe each of your endpoints.
-- [x] Everything between the guillemots (« and ») should be replaced by you to describe the endpoint.
+- [x] We use the following template to describe each of our endpoints.
+- [x] Everything between the guillemots (« and ») should be replaced to describe the endpoint.
 - [x] Mandatory fields are:
   - Endpoint path
   - Endpoint method
   - Response
   - Response shape
 - [x] Optional fields:
-  - If your endpoint needs to know who the person is, then include the **_Headers/Authorization_** part.
-  - If your endpoint is a POST, PUT, or PATCH, include the Request shape (JSON) part.
+  - If the endpoint needs to know who the person is, then include the **_Headers/Authorization_** part.
+  - If the endpoint is a POST, PUT, or PATCH, include the Request shape (JSON) part.
 
 <br>
 
@@ -115,9 +115,9 @@
 - Request body:
   ```json
   {
-    "post": [
-        {
-        "contact_name": string,  <!-- necessary ??????? -->
+    "posts": [
+      {
+        "contact_name": string,
         "post_text": string,
         "image_url": string,
         "video_url": string,
@@ -172,16 +172,14 @@
 - Request body:
   ```json
   {
-    "post": [
-        {
-        "avatar_url": string,  <!-- necessary ??????? -->
-        "contact_name": string,  <!-- necessary ??????? -->
-        "post_text": string,
-        "image_url": string,
-        "video_url": string,
-        "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
-      }
-    ]
+    "post": {
+      "avatar_url": string,  <!-- necessary ??????? -->
+      "contact_name": string,  <!-- necessary ??????? -->
+      "post_text": string,
+      "image_url": string,
+      "video_url": string,
+      "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
+    }
   }
   ```
 - Response: An indication of success or failure
@@ -204,19 +202,16 @@
 - Response shape:
   ```json
   {
-    "user": [
-      {
-        "username": string,
-        "log_out": button,  <!-- ??????? -->
-        "create_post": {
-          "post_content": text,
-          "image_url": string,
-          "video_url": string,
-          "time_stamp": timestamp,  <!-- or string ??????? -->
-        },
-        "posts_history": dictionary,  <!-- ??????? -->
-      }
-    ]
+    "user": {
+      "username": string,
+      "create_post": {
+        "post_content": text,
+        "image_url": string,
+        "video_url": string,
+        "time_stamp": timestamp,  <!-- or string ??????? -->
+      },
+    },
+    "posts_history": dictionary,  <!-- ??????? -->
   }
   ```
 
