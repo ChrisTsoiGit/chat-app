@@ -1,178 +1,3 @@
-## API Design:
-
-<br>
-
-### 1. Contacts list:
-
-- Endpoint path: /contacts
-- Endpoint method: GET
-- Headers:
-  - Authorization: Bearer token
-- Response: A list of contacts
-- Response shape:
-  ```json
-  {
-    "contacts": [
-      {
-        "avatar_url": string,
-        "contact_name": string,
-      }
-    ]
-  }
-  ```
-
-<br>
-
-### 2. Chats history:
-
-- Endpoint path: /chats
-- Endpoint method: GET
-- Headers:
-  - Authorization: Bearer token
-- Response: chats history
-- Response shape:
-  ```json
-  {
-    "chats": [
-      {
-        "avatar_url": string,
-        "contact_name": string,
-        "msg_preview": string,
-      }
-    ]
-  }
-  ```
-
-<br>
-
-### 3. Create a post:
-
-- Endpoint path: /Moments
-- Endpoint method: POST
-- Headers:
-  - Authorization: Bearer token
-- Request body:
-  ```json
-  {
-    "post": [
-        {
-        "avatar_url": string,  <!-- necessary ??????? -->
-        "contact_name": string,  <!-- necessary ??????? -->
-        "post_text": string,
-        "image_url": string,
-        "video_url": string,
-        "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
-      }
-    ]
-  }
-  ```
-- Response: An indication of success or failure
-- Response shape:
-  ```json
-  {
-    "success": boolean,
-    "message": string
-  }
-  ```
-  <br>
-
-### 4. [stretch goal] Moments - list of posts:
-
-- Endpoint path: /moments
-- Endpoint method: GET
-- Headers:
-  - Authorization: Bearer token
-- Response: A list of posts
-- Response shape:
-  ```json
-  {
-    "moments": [
-      {
-        "avatar_url": string,
-        "contact_name": string,
-        "post_text": string,
-        "image_url": string,
-        "video_url": string,
-        "time_stamp": string,
-        "likes": smallint  <!-- -32768 to +32767 ??????? -->
-      }
-    ]
-  }
-  ```
-
-<br>
-
-### 5. Profile page - create post & post history:
-
-- Endpoint path: /user <!-- ??????? -->
-- Endpoint method: GET
-- Headers:
-  - Authorization: Bearer token
-- Response: the user detail
-- Response shape:
-  ```json
-  {
-    "user": [
-      {
-        "username": string,
-        "log_out": button,  <!-- ??????? -->
-        "create_post": {
-          "post_content": text,
-          "image_url": string,
-          "video_url": string,
-          "time_stamp": timestamp,  <!-- or string ??????? -->
-        },
-        "posts_history": dictionary,  <!-- ??????? -->
-      }
-    ]
-  }
-  ```
-
----
-
-<br>
-
-## Required Endpoints:
-
-<br>
-
-### 1. Log in:
-
-- Endpoint path: /token
-- Endpoint method: POST
-- Request shape (form):
-  - username: string
-  - password: string
-- Response: Account information and a token
-- Response shape (JSON):
-  ```json
-  {
-    "account": {
-        "username": string,
-        "password": string,
-    },
-    "token": string  <!-- ??????? -->
-  }
-  ```
-
-<br>
-
-### 2. Log out:
-
-- Endpoint path: /token
-- Endpoint method: DELETE
-- Headers:
-  - Authorization: Bearer token
-- Response: Always true
-- Response shape (JSON):
-  ```json
-  true
-  ```
-
----
-
-<br>
-
 ## Endpoint Template:
 
 <br>
@@ -207,4 +32,204 @@
   ```json
   «JSON-looking thing that has the
   keys and types in it»
+  ```
+
+---
+
+<br>
+
+## API Design:
+
+<br>
+
+### 1. Log in:
+
+- Endpoint path: /login
+- Endpoint method: POST
+- Request shape (form):
+  - username: string
+  - password: string
+- Response: Account information
+- Response shape (JSON):
+  ```json
+  {
+    "account": {
+        "username": string,
+        "password": string,
+    },
+    "token": string  <!-- ??????? -->
+  }
+  ```
+
+<br>
+
+### 2. Chats history:
+
+- Endpoint path: /chats
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: chats history
+- Response shape:
+  ```json
+  {
+    "chats": [
+      {
+        "avatar_url": string,
+        "contact_name": string,
+        "msg_preview": string,
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 3. Contacts list:
+
+- Endpoint path: /contacts
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: A list of contacts
+- Response shape:
+  ```json
+  {
+    "contacts": [
+      {
+        "avatar_url": string,
+        "contact_name": string,
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 4. Chat:
+
+- Endpoint path: /chat
+- Endpoint method: POST
+- Headers:
+  - Authorization: Bearer token
+- Request body:
+  ```json
+  {
+    "post": [
+        {
+        "contact_name": string,  <!-- necessary ??????? -->
+        "post_text": string,
+        "image_url": string,
+        "video_url": string,
+        "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
+      }
+    ]
+  }
+  ```
+- Response: An indication of success or failure
+- Response shape:
+  ```json
+  {
+    "success": boolean,
+    "message": string
+  }
+  ```
+
+<br>
+
+### 5. [stretch goal] Moments - list of posts:
+
+- Endpoint path: /moments
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: A list of posts
+- Response shape:
+  ```json
+  {
+    "moments": [
+      {
+        "avatar_url": string,
+        "contact_name": string,
+        "post_text": string,
+        "image_url": string,
+        "video_url": string,
+        "time_stamp": string,
+        "likes": smallint  <!-- -32768 to +32767 ??????? -->
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 6. Create a post:
+
+- Endpoint path: /moments
+- Endpoint method: POST
+- Headers:
+  - Authorization: Bearer token
+- Request body:
+  ```json
+  {
+    "post": [
+        {
+        "avatar_url": string,  <!-- necessary ??????? -->
+        "contact_name": string,  <!-- necessary ??????? -->
+        "post_text": string,
+        "image_url": string,
+        "video_url": string,
+        "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
+      }
+    ]
+  }
+  ```
+- Response: An indication of success or failure
+- Response shape:
+  ```json
+  {
+    "success": boolean,
+    "message": string
+  }
+  ```
+  <br>
+
+### 7. Profile page - create post & post history:
+
+- Endpoint path: /user <!-- ??????? -->
+- Endpoint method: GET
+- Headers:
+  - Authorization: Bearer token
+- Response: the user detail
+- Response shape:
+  ```json
+  {
+    "user": [
+      {
+        "username": string,
+        "log_out": button,  <!-- ??????? -->
+        "create_post": {
+          "post_content": text,
+          "image_url": string,
+          "video_url": string,
+          "time_stamp": timestamp,  <!-- or string ??????? -->
+        },
+        "posts_history": dictionary,  <!-- ??????? -->
+      }
+    ]
+  }
+  ```
+
+<br>
+
+### 8. Log out:
+
+- Endpoint path: /logout
+- Endpoint method: DELETE
+- Headers:
+  - Authorization: Bearer token
+- Response: Always true
+- Response shape (JSON):
+  ```json
+  true
   ```

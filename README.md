@@ -104,8 +104,6 @@
    pip install fastapi[all]
    ```
 
-   then close and reopen the terminal
-
 4. create chats.py and edit:
 
 ```python
