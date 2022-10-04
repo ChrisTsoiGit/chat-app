@@ -121,7 +121,25 @@ uvicorn chats:my_app --reload
 
 ---
 
-## Test & Deploy:
+## Deploy:
+
+1. Setup and deploy group project template
+2. Create Heroku account. Only one needed for the project, but all should create one and play with it.
+3. Get Heroku API Key: Heroku avatar > Settings > API Key > Reveal
+4. Create a Heroku application: upper right corner "New" > Create new app > App name: my-safe-chat
+5. Set 2 env vars in `.gitlab-ci.yml`:
+   - `PUBLIC_URL`: "https://USERNAME(qmeng222).gitlab.io/PROJECTNAME(safe-app)"
+   - `REACT_APP_API_HOST`: "https://HEROKU-APP-NAME(my-safe-chat).herokuapp.com"
+
+6) Set Heroku Config Variables:
+   Heroku app name > Settings > Config Vars > Reveal Config Vars > Add
+   - CORS_HOST (as key): "https://USERNAME.gitlab.io" (as value)
+7) Set GitLab CI/CD Variables (Settings > CI/CD > Variables > Expand > Add variables, one by one):
+   1. HEROKU_API_KEY: value from step #2 above. This must be "masked" and "protected".
+   2. HEROKU_FASTAPI_APP: HEROKU_APP_NAME
+   3. REACT_APP_API_HOST: "https://APP-NAME.herokuapp.com"
+8) Push to main, go watch the CI/CD pipeline in gitlab
+9) When that succeeds, go see if your site is up
 
 ---
 
