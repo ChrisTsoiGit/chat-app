@@ -36,6 +36,41 @@
 
 ---
 
+## Project setup:
+
+- Create the postgres-data volume before composing up:
+  ```
+  docker volume create postgres-data
+  docker compose up
+  ```
+- Add a new database:
+  - add a new name to the comma-separated list of database names for **_POSTGRES_MULTIPLE_DATABASES_**
+  - stop all services
+  - prune the stopped containers
+    ```
+    docker container prune
+    ```
+  - delete **_postgres-data_** volume
+    ```
+    docker volume remove postgres-data
+    ```
+  - create a new **_postgres-data_** volume
+    ```
+    docker volume create postgres-data
+    ```
+  - bring services back up which will create all of the databases in the RDBMS anew:
+    ```
+    docker compose up
+    ```
+- To easily use MongDB, copy paste codes to docker-compose.yaml following instructions in Learn.
+- Create **_postgres-data volume_** before composing up:
+  ```
+  docker volume create mongo-data
+  docker compose up
+  ```
+
+---
+
 ## Working in development branches:
 
 1. Creates a dev-branch:
