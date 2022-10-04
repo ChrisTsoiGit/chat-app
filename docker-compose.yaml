@@ -1,6 +1,9 @@
-# volumes:
+volumes:
+    postgres-data:
+        external: true
+
 services:
-  fastapi:
+  sample_fastapi:
     build:
       context: sample_service
       dockerfile: Dockerfile.dev
@@ -8,6 +11,16 @@ services:
       - 8000:8000
     volumes:
       - ./sample_service:/app
+
+  user_fastapi:
+    build:
+      context: user_service
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8001:8000
+      # look up iner vs outer
+    volumes:
+      - ./user_service:/app
   
   ghi:
     image: node:lts-bullseye
