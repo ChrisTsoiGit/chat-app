@@ -32,7 +32,7 @@
    ```
    git clone https://gitlab.com/chatapp12/chat-app.git
    ```
-4. Run docker-compose up
+4. Run docker compose up
 
 ---
 
@@ -68,8 +68,15 @@
   docker volume create mongo-data
   docker compose up
   ```
+- [Optional] Use "linter" **_black_** to format the code for the entire team. Then, before you **_git add_** your Python code, run **_black_** on the directories that you have Python code in:
 
----
+  ```
+  python -m pip install black
+  # This command will format all of the .py files in the customer-api and weather-data directories:
+  black customer-api weather-data
+  ```
+
+- ***
 
 ## Working in development branches:
 
@@ -82,21 +89,26 @@
 
 2. Now each team member can mangle all they want without affecting the main branch or anyone else's dev-branch
 3. When a team member's branch is at a stable state and ready to be pushed to the main branch, follow these steps:
+   ![merging to main](/images/merge.png)
 
    ```python
-   (my-branch) $ git checkout main    # switch to main branch
-   (main) $ git pull                  # get latest from remote
-   (main) $ git checkout my-branch    # switch to dev branch
-   (my-branch) $ git merge main       # merge latest into dev branch
+   (my-branch) $ git add.
+   (my-branch) $ git commit
+   (my-branch) $ pit push             # 1. push to personal
+   (my-branch) $ git checkout main    # 2. switch to main branch
+   (main) $ git pull                  # 3. get latest from remote
+   (main) $ git checkout my-branch    # 4. switch to dev branch
+   (my-branch) $ git merge main       # 5. merge latest into dev branch
    ... handle any merging here
    ... test out your code
-   (my-branch) $ git checkout main    # switch to main branch
-   (main) $ git pull                  # test for changes on remote
+   (my-branch) $ git checkout main    # 6. switch to main branch
+   (main) $ git pull                  #    test for changes on remote
    ... if no changes proceed,
    ... if changes go back to line 3
-   (main) $ git merge my-branch       # merge dev branch into main
-   (main) $ git push                  # push changes to the remote
-   (main) $ git checkout my-branch    # change back to dev branch
+   (main) $ git merge my-branch       # 7. merge dev branch into main
+   (main) $ git merge --abort         #    recall merge
+   (main) $ git push                  #    push changes to the remote
+   (main) $ git checkout my-branch    # 8. change back to dev branch
    ```
 
 4. Merge conflicts
