@@ -26,17 +26,19 @@
 
 ## Getting started:
 
-1. Fork the repository at
-2. Add teammate to the project: GitLab > Project Information > Members > Invite members (as Maintainer)
-3. All member clone the same repo to their computer:
-   ```
-   git clone https://gitlab.com/chatapp12/chat-app.git
-   ```
-4. Run docker compose up
+- Fork the repository at
+- Add teammate to the project: GitLab > Project Information > Members > Invite members (as Maintainer)
+- All member clone the same repo to their computer:
+  ```
+  git clone https://gitlab.com/chatapp12/chat-app.git
+  ```
+- Run docker compose up
 
 ---
 
 ## Project setup:
+
+### PostgreSQL database
 
 - Create the postgres-data volume before composing up:
   ```
@@ -44,7 +46,8 @@
   docker compose up
   ```
 - Add a new database:
-  - add a new name to the comma-separated list of database names for **_POSTGRES_MULTIPLE_DATABASES_**
+  **_Warning: This will cause you to lose all data in all of your local databases._**
+  - add a new name to the comma-separated list of database names for **_POSTGRES_MULTIPLE_DATABASES_** in docker-compose.yaml
   - stop all services
   - prune the stopped containers
     ```
@@ -62,12 +65,38 @@
     ```
     docker compose up
     ```
+
+### MongoDB database
+
 - To easily use MongDB, copy paste codes to docker-compose.yaml following instructions in Learn.
 - Create **_postgres-data volume_** before composing up:
   ```
   docker volume create mongo-data
   docker compose up
   ```
+
+## Start a MongoDB instance
+
+- Create a container named "me-mongo" that will run MongoDB v.5:
+
+  ```
+  docker run --name me-mongo mongo:5
+  ```
+
+- In another terminal window, connect to that running container with docker exec and run the mongosh application:
+
+  ```
+  docker exec -it me-mongo mongosh
+  test> <---- you're connected to the "test" database being managed the MongoDB server (MongoDB Docker image creates a "test" database by default)
+  ```
+
+- Remove the container:
+  ```
+  docker container rm me-mongo
+  ```
+
+### Linter
+
 - [Optional] Use "linter" **_black_** to format the code for the entire team. Then, before you **_git add_** your Python code, run **_black_** on the directories that you have Python code in:
 
   ```

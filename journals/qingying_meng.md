@@ -11,19 +11,30 @@
 
 <br>
 
+## Wednesday, 10/5/2022
+
+- Created _issues list_ for the work that we want to implement with group agreements.
+- Wrote _user story_, _feature_, and _description_ for issue **_Chat_** and issue **_Chats history_**
+- Ah-ha! moment: acceptance testing provides a clear and unambiguous “contract” between developers, complementing the unit tests.
+
+<br>
+
 ## Tuesday, 10/4/2022
 
-- Updated ReadMe.md with detailed deployment instructions
-- Pushed completed .gitlab-ci.yml file to my dev-branch for record
-- Worked on issues list with team members to coordinate team work. Later we will use the GitLab Issues board to change their status by dragging them between columns in the board.
-- Created and wrote my developer's journal
-- Worked on creating Dockerfile and docker-compose.yaml file
+- Added a merge flowchat as well as detailed instructions to ReadMe.
+- Disscussed project architecture to coordinate team work. I was assigned to implement the **_chat_** model and related features.
+- Created my developer's journal and will log on daily basis
 - Finished project setup:
+  - Worked on creating Dockerfile and docker-compose.yaml file
   - created .gitattributes file in the top-level directory and editted it with configuration for supporting Windows users/collaborators, if any;
   - created and editted _create-multiple-databases.sh_ to support multiple database instances in a single PostgreSQL RDBMS;
   - add additional directories or files to project structure following instructions in Learn;
   - updatd docker-compose.yaml following instructions in Learn;
-- Ah-ha! moment:
+- Ah-ha! moment - PostgreSQL vs. MongoDB:
+  - Postgres uses SQL; MongoDB uses BSON (NoSQL)
+  - Postgres is a relational database management system; MongoDB is a document database.
+  - A row in a table has to comply with the data types of the columns. A document can hold any data as key-value pairs.
+  - PostgreSQL has a monolithic architecture; MongoDB has a distributed architecture.
 
 <br>
 
@@ -33,6 +44,8 @@
 - Updated project wirefram to v.3.
 - Embedded wirefram.png into ReadMe.md (under _Overview_)
 - Finished deployment with the help from team member Chris
+- Updated ReadMe.md with detailed deployment instructions
+- Pushed completed .gitlab-ci.yml file to my dev-branch for record
 - Ah-ha! moment: GitLab project visualbitliy must be set to "public" to allow deployment
 
 <br>
@@ -42,7 +55,6 @@
 - Updated api-design.md to v.2. with corrected data types
 - Labelled uncertain data types for further discussion with team members
 - Updated project wireframe to v.2. with rearranged layouts
-- Ah-ha! moment: ??????
 
 <br>
 

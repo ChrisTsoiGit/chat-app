@@ -1,7 +1,7 @@
 stages:
-  - test
-  - build
-  - deploy
+  - test # Run tests
+  - build # Build assets
+  - deploy # Deploy the services and front-end
 
 ## BUILD
 build-front-end-job:
