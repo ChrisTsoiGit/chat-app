@@ -12,15 +12,15 @@ services:
     volumes:
       - ./sample_service:/app
 
-  user_fastapi:
-    build:
-      context: user_service
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8001:8000
-      # look up iner vs outer
-    volumes:
-      - ./user_service:/app
+  # user_fastapi:
+  #   build:
+  #     context: user_service
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - 8001:8000
+  #     # look up iner vs outer
+  #   volumes:
+  #     - ./user_service:/app
   
   ghi:
     image: node:lts-bullseye
