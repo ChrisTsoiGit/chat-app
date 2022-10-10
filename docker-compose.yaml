@@ -21,6 +21,16 @@ services:
       # look up iner vs outer
     volumes:
       - ./user_service:/app
+
+  post_fastapi:
+    build:
+      context: post_service
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8002:8000
+      # look up iner vs outer
+    volumes:
+      - ./post_service:/app
   
   ghi:
     image: node:lts-bullseye
