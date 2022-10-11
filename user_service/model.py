@@ -7,7 +7,7 @@ class User(BaseModel):
     username: str
     email: EmailStr
     full_name: str | None = None
-    profile_img: Optional[EmailStr]
+    profile_picture: Optional[str]
 
 class UserIn(User):
     password: str
