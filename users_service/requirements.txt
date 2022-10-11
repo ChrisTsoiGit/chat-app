@@ -1,0 +1,5 @@
+fastapi[all]==0.78.0
+uvicorn[standard]==0.17.6
+psycopg[binary,pool]==3.0.14  # use PostgreSQL with the service
+pymongo==4.1.1  # use MongoDB with the service
+black==22.10.0  # linter

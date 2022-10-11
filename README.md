@@ -1,5 +1,7 @@
 # SafeChat - a social platform with secure chat & share
 
+## About:
+
 - Project name: SafeChat
 - Time: 9/26/2022 - 10/227/2022
 - Purposes:
@@ -7,10 +9,10 @@
   - demonstrate ability to use MongoDB to ...
   - demonstrate ability to work with others in a team setting
 - Team members & responsibilities:
-  - Austin Miller: ???
-  - Chris Tsoi: ???
-  - Echo Yang: ???
-  - Qingying Meng: ???
+  - Austin Miller: blog post(CRUD/comment/fetch posts) and share
+  - Chris Tsoi: contacts and contacts list
+  - Echo Yang: user login/logout
+  - Qingying Meng: chat and chats history
 
 ---
 
@@ -64,6 +66,7 @@
   - bring services back up which will create all of the databases in the RDBMS anew:
     ```
     docker compose up
+    docker images
     ```
 
 ### MongoDB database
@@ -93,6 +96,31 @@
 - Remove the container:
   ```
   docker container rm me-mongo
+  ```
+- MongoDB CRUD Operations:
+
+  - db.createCollection(collection_name, options)
+  - db.insertOne(data, options)
+  - db.insertMany(data, options)
+  - db.indOne(filter, options)
+  - db.find(filter, options)
+  - db.update(filter, data, options)
+  - db.updateOne(filter, data, options)
+  - db.updateMany(filter, data, options)
+  - db.replaceOne(filter, data, options)
+  - db.deleteOne(filter, options)
+  - db.deleteMany(filter, options)
+
+  ```bson
+  db.movies.insertOne({name: "Movie A", year: 1976})
+  db.movies.insertOne({name: "Movie B", year: 2001, cast: {director: "Joseph", actors: ["Kate", "Yuri", "Kai"]}})
+  db.movies.find(year: {$gt{1900}})
+  db.movies.find().pretty()
+  db.moovies.updateOne({year: 1976}, {$set: {marker: "delete"}})
+  db.moovies.updateOne({}, {$set: {marker: "toDelete"}})
+  db.movies.deleteOne({db.movies.deleteOne({})})
+  db.movies.deleteMany({marker: "toDelete"})
+  db.movies.deleteMany({})
   ```
 
 ### Linter
@@ -180,20 +208,13 @@
    pip install fastapi[all]
    ```
 
-4. create chats.py and edit:
+4. start application by running uvicorn & start reloader and server process
 
-```python
-from fastapi import FastAPI  # import FastAPI into chats.py
-my_app = FastAPI()  # create fastAPI application, chat_app
-# decorator: all GET requests to the "<<...>>" path should be handled by the upcoming function
-@my_app.post("/api/test")
-async def first_api():
-    return {"message": "Hello FastAPI"}
+   ```python
+   uvicorn main:chat_app --reload
+   ```
 
-# start application: run uvicorn & start relooader and server process
-uvicorn chats:my_app --reload
-# uvicorn running on http://127.0.0.1:8000 & shows {"message": "Hello FastAPI"}
-```
+   open http://127.0.0.1:8000/docs in browser
 
 ---
 

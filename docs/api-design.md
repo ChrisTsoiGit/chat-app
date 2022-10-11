@@ -57,7 +57,7 @@
         "username": string,
         "password": string,
     },
-    "token": string  <!-- ??????? -->
+    "token": string
   }
   ```
 
@@ -121,7 +121,7 @@
         "post_text": string,
         "image_url": string,
         "video_url": string,
-        "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
+        "time_stamp": timestamp,
       }
     ]
   }
@@ -155,7 +155,7 @@
         "image_url": string,
         "video_url": string,
         "time_stamp": string,
-        "likes": smallint  <!-- -32768 to +32767 ??????? -->
+        "likes": smallint,
       }
     ]
   }
@@ -178,7 +178,7 @@
       "post_text": string,
       "image_url": string,
       "video_url": string,
-      "time_stamp": timestamp,  <!-- "2022-10-01 14:30:00" ??????? -->
+      "time_stamp": timestamp,
     }
   }
   ```
@@ -194,7 +194,7 @@
 
 ### 7. Profile page - create post & post history:
 
-- Endpoint path: /user <!-- ??????? -->
+- Endpoint path: /user
 - Endpoint method: GET
 - Headers:
   - Authorization: Bearer token
@@ -208,10 +208,10 @@
         "post_content": text,
         "image_url": string,
         "video_url": string,
-        "time_stamp": timestamp,  <!-- or string ??????? -->
+        "time_stamp": timestamp,
       },
     },
-    "posts_history": dictionary,  <!-- ??????? -->
+    "posts_history": array,  <!-- ??????? -->
   }
   ```
 

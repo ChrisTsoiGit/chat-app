@@ -9,7 +9,25 @@
 
 ---
 
+## Monday, 10/10/2022
+
+- Edited the Dockerfile & defined services in the compose file
+- Experimented MongoDB CRUD operations
+- Ah-ha! moment: MongoDB enforces no schemas. Documents don't have to use the same schema inside of one collection.
+
 <br>
+
+## Friday off, 10/7/2022
+
+- Learnt developing CRUD application using FastAPI & MongoDB
+
+<br>
+
+## Thursday, 10/6/2022
+
+- updatd ReadMe with responsibilities assigned for each team member, plus MongoDB CRUD operations
+- worked on data schemas and data modelling
+- Ah-ha! moment: in MongoDB, we can build one-to-many relationsuse using references (e.g. \_id) or using embedded structure
 
 ## Wednesday, 10/5/2022
 
