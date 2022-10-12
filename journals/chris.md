@@ -15,6 +15,14 @@ Today, I worked on:
 Todoy, I walked through the mongodb set in docker file. Read some docuements about mongodb.
 Set up a username and passward for mongodb and connect it.
 
+## October 6, 2022
+
+Today, I worked on:
+
+* Building models for endpoints. 
+
+Todoy, I kept building models with Echo. We have created one for user.
+
 
 ## October 4, 2022
 
