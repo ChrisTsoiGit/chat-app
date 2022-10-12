@@ -211,10 +211,11 @@
 4. start application by running uvicorn & start reloader and server process
 
    ```python
-   uvicorn main:chat_app --reload
+   uvicorn main:app --reload
    ```
 
-   open http://127.0.0.1:8000/docs in browser
+   - open http://127.0.0.1:8000/ in browser
+   - default FastAPI swagger page: http://127.0.0.1:8000/docs
 
 ---
 

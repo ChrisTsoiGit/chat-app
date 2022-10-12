@@ -9,6 +9,8 @@
 
 ---
 
+## Tuesday, 10/11/2022
+
 ## Monday, 10/10/2022
 
 - Edited the Dockerfile & defined services in the compose file
