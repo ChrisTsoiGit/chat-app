@@ -1,9 +1,16 @@
 from urllib import response
 from fastapi import APIRouter
-from model import User, UserIn, UserOut, UserInDB
+from model import User, UserIn
+from queries import mongoclient
 
 
 router = APIRouter()
+
+# homepage
+@router.get("/")
+def index():
+    return {"message": "Welcome To FastAPI World"}
+
 
 # get all users
 @router.get("/users", response_model = User)

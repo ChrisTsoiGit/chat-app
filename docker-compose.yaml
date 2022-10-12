@@ -50,4 +50,3 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: userpw
       ME_CONFIG_MONGODB_URL: mongodb://user:userpw@mongo:27017/
 
-            
