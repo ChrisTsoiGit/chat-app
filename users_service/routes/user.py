@@ -14,7 +14,9 @@ async def hello_world():
 @user_router.post('/users')
 async def create_user(user: User):
     connection.local.user.insert_one(dict(user))
-    return listOfUserEntity(connection.local.user.find()) # return all users
+    temp = listOfUserEntity(connection.local.user.find())
+    return temp
+    # return listOfUserEntity(connection.local.user.find()) # return all users
 
 # get all users:
 @user_router.get('/users')

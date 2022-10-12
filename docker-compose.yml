@@ -1,8 +1,8 @@
 version: "3.9"
 
 volumes:
-  node-mod:
-    external: true
+  # node-mod:
+  #   external: true
 
   fastapi:
     external: true
@@ -11,70 +11,19 @@ volumes:
     external: true
 
 services:
-  api:
-    build:
-      context: api
-      dockerfile: Dockerfile.dev
-    volumes:
-      - ./api:/app
-    ports:
-      - 9000:9000
-    environment:
-      MONGO_URL: mongodb://user:pw@mongo/admin
-      SIGNING_KEY: 87fe4a3fcfb60092dbaeb854a196bc3d9b190aed7930c734749e85245de698420c25f8e6899c421b4494e99459e01058de5daa9d49584cd62ec975da9aea33da
-      WAIT_HOSTS: mongo:27017
-      WAIT_BEFORE: 5
-      WAIT_TIMEOUT: 60
-
-  ghi:
-    build:
-      context: ghi
-      dockerfile: Dockerfile.dev
-    volumes:
-      - node-mod:/app/node_modules
-      - ./ghi:/app
-    ports:
-      - 3000:3000
-    environment:
-      REACT_APP_API_HOST: http://localhost:8000
-      REACT_APP_WS_HOST: ws://localhost:8000
-      WAIT_HOSTS: api:8000
-      WAIT_BEFORE: 5
-      WAIT_TIMEOUT: 60
-
   react:
-    build:
-      context: ./frontend-app
-      dockerfile: ./Dockerfile.dev
     image: node:lts-bullseye
     command: /bin/bash run.sh
     working_dir: /app
     volumes:
-      - ./frontend-app:/app
+      - ./ghi:/app
     ports:
       - "3000:3000"
     environment:
       HOST_OS: ${OS}
       NODE_ENV: development
       HOST: "0.0.0.0"
-      REACT_APP_USERS: http://localhost:8080
-      REACT_APP_NAVLINK: ""
-      # REACT_APP_MESSENGER: http://localhost:8070
-      # REACT_APP: http://localhost:3000
-
-  fastapi:
-    build:
-      context: fastapi
-      dockerfile: Dockerfile.dev
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./fastapi:/app
-    environment:
-      DATABASE_URL: postgresql://foodies:foodies@postgres/foodies
-      MONGO_URL: mongodb://foodies:foodies@mongo
-      MONGO_DB: foodies
-      WAIT_HOSTS: postgres:5432,mongo:27017
+      REACT_APP_API_HOST: http://localhost:8000
 
   mongo:
     image: mongo:6
@@ -86,9 +35,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: pw
 
   mongo-express:
-    build:
-      context: setup/mongo-express
-      dockerfile: Dockerfile.dev
+    image: mongo-express:latest
     depends_on:
       - mongo
     ports:
@@ -97,10 +44,10 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_ADMINUSERNAME: user
       ME_CONFIG_MONGODB_ADMINPASSWORD: pw
-      # ME_CONFIG_MONGODB_URL: mongodb://user:pw@mongo:27017/
-      WAIT_HOSTS: mongo:27017
-      WAIT_BEFORE: 5
-      WAIT_TIMEOUT: 60
+      ME_CONFIG_MONGODB_URL: mongodb://user:pw@mongo:27017/
+      # WAIT_HOSTS: mongo:27017
+      # WAIT_BEFORE: 5
+      # WAIT_TIMEOUT: 60
 
   users:
     build:
