@@ -1,4 +1,14 @@
-import React from 'react';
+import React, { useContext } from "react";
+
+import { UserContext } from "../context/UserContext";
+
+const Header = ({ title }) => {
+  const [token, setToken] = useContext(UserContext);
+
+  const handleLogout = () => {
+    setToken(null);
+  };
+
 
 
 function MessageRow(props) {
@@ -79,6 +89,14 @@ class Chat extends React.Component {
   render() {
     return (
       <>
+      <div className="has-text-centered m-6">
+      <h1 className="title">{title}</h1>
+      {token && (
+        <button className="button" onClick={handleLogout}>
+          Logout
+        </button>
+      )}
+     </div>
         <h1>WebSocket Chat</h1>
         <h2>Your ID: {this.state.clientId}</h2>
         <form onSubmit={this.sendMessage}>
@@ -111,7 +129,6 @@ class Chat extends React.Component {
         </table>
       </>
     )
-  }
-}
-
+  };
+};
 export default Chat;
