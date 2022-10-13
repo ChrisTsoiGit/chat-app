@@ -9,7 +9,15 @@
 
 ---
 
+## Wednesday, 10/12/2022
+
+- dg
+
 ## Tuesday, 10/11/2022
+
+- wrote the userEntity function and listOfUserEntity function
+- enabled MongoDB CRUD operations in user_service
+- Ah-ha! moment:
 
 ## Monday, 10/10/2022
 

@@ -40,100 +40,35 @@
 
 ## Project setup:
 
-### PostgreSQL database
-
-- Create the postgres-data volume before composing up:
-  ```
-  docker volume create postgres-data
-  docker compose up
-  ```
-- Add a new database:
-  **_Warning: This will cause you to lose all data in all of your local databases._**
-  - add a new name to the comma-separated list of database names for **_POSTGRES_MULTIPLE_DATABASES_** in docker-compose.yaml
-  - stop all services
-  - prune the stopped containers
-    ```
-    docker container prune
-    ```
-  - delete **_postgres-data_** volume
-    ```
-    docker volume remove postgres-data
-    ```
-  - create a new **_postgres-data_** volume
-    ```
-    docker volume create postgres-data
-    ```
-  - bring services back up which will create all of the databases in the RDBMS anew:
-    ```
-    docker compose up
-    docker images
-    ```
-
-### MongoDB database
-
-- To easily use MongDB, copy paste codes to docker-compose.yaml following instructions in Learn.
-- Create **_postgres-data volume_** before composing up:
-  ```
-  docker volume create mongo-data
-  docker compose up
-  ```
-
-## Start a MongoDB instance
-
-- Create a container named "me-mongo" that will run MongoDB v.5:
-
-  ```
-  docker run --name me-mongo mongo:5
-  ```
-
-- In another terminal window, connect to that running container with docker exec and run the mongosh application:
-
-  ```
-  docker exec -it me-mongo mongosh
-  test> <---- you're connected to the "test" database being managed the MongoDB server (MongoDB Docker image creates a "test" database by default)
-  ```
-
-- Remove the container:
-  ```
-  docker container rm me-mongo
-  ```
-- MongoDB CRUD Operations:
-
-  - db.createCollection(collection_name, options)
-  - db.insertOne(data, options)
-  - db.insertMany(data, options)
-  - db.indOne(filter, options)
-  - db.find(filter, options)
-  - db.update(filter, data, options)
-  - db.updateOne(filter, data, options)
-  - db.updateMany(filter, data, options)
-  - db.replaceOne(filter, data, options)
-  - db.deleteOne(filter, options)
-  - db.deleteMany(filter, options)
-
-  ```bson
-  db.movies.insertOne({name: "Movie A", year: 1976})
-  db.movies.insertOne({name: "Movie B", year: 2001, cast: {director: "Joseph", actors: ["Kate", "Yuri", "Kai"]}})
-  db.movies.find(year: {$gt{1900}})
-  db.movies.find().pretty()
-  db.moovies.updateOne({year: 1976}, {$set: {marker: "delete"}})
-  db.moovies.updateOne({}, {$set: {marker: "toDelete"}})
-  db.movies.deleteOne({db.movies.deleteOne({})})
-  db.movies.deleteMany({marker: "toDelete"})
-  db.movies.deleteMany({})
-  ```
-
-### Linter
-
-- [Optional] Use "linter" **_black_** to format the code for the entire team. Then, before you **_git add_** your Python code, run **_black_** on the directories that you have Python code in:
-
-  ```
-  python -m pip install black
-  # This command will format all of the .py files in the customer-api and weather-data directories:
-  black customer-api weather-data
-  ```
-
 - ***
+
+## MongoDB CRUD operations:
+
+- db.createCollection(collection_name, options)
+- db.insertOne(data, options)
+- db.insertMany(data, options)
+- db.indOne(filter, options)
+- db.find(filter, options)
+- db.update(filter, data, options)
+- db.updateOne(filter, data, options)
+- db.updateMany(filter, data, options)
+- db.replaceOne(filter, data, options)
+- db.deleteOne(filter, options)
+- db.deleteMany(filter, options)
+
+```bson
+db.movies.insertOne({name: "Movie A", year: 1976})
+db.movies.insertOne({name: "Movie B", year: 2001, cast: {director: "Joseph", actors: ["Kate", "Yuri", "Kai"]}})
+db.movies.find(year: {$gt{1900}})
+db.movies.find().pretty()
+db.moovies.updateOne({year: 1976}, {$set: {marker: "delete"}})
+db.moovies.updateOne({}, {$set: {marker: "toDelete"}})
+db.movies.deleteOne({db.movies.deleteOne({})})
+db.movies.deleteMany({marker: "toDelete"})
+db.movies.deleteMany({})
+```
+
+---
 
 ## Working in development branches:
 
