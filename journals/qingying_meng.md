@@ -9,9 +9,15 @@
 
 ---
 
+## Thursday, 10/13/2022
+
+- continue working on JWTdown for FastAPI, easy login & logout
+
 ## Wednesday, 10/12/2022
 
-- dg
+- edited docker-compose.yaml
+- learnt JWTdown for FastAPI:
+  - [] FastAPI - Swagger UI: http://localhost:8000/docs
 
 ## Tuesday, 10/11/2022
 
@@ -51,13 +57,7 @@
 
 - Added a merge flowchat as well as detailed instructions to ReadMe.
 - Disscussed project architecture to coordinate team work. I was assigned to implement the **_chat_** model and related features.
-- Created my developer's journal and will log on daily basis
-- Finished project setup:
-  - Worked on creating Dockerfile and docker-compose.yaml file
-  - created .gitattributes file in the top-level directory and editted it with configuration for supporting Windows users/collaborators, if any;
-  - created and editted _create-multiple-databases.sh_ to support multiple database instances in a single PostgreSQL RDBMS;
-  - add additional directories or files to project structure following instructions in Learn;
-  - updatd docker-compose.yaml following instructions in Learn;
+- Finished project setup
 - Ah-ha! moment - PostgreSQL vs. MongoDB:
   - Postgres uses SQL; MongoDB uses BSON (NoSQL)
   - Postgres is a relational database management system; MongoDB is a document database.
@@ -68,12 +68,9 @@
 
 ## Monday, 10/3/2022
 
-- Updated ReadMe.md with instructions for installing virtualEnv and FastAPI
-- Updated project wirefram to v.3.
 - Embedded wirefram.png into ReadMe.md (under _Overview_)
-- Finished deployment with the help from team member Chris
+- Finished sample service deployment with the help from team member Chris
 - Updated ReadMe.md with detailed deployment instructions
-- Pushed completed .gitlab-ci.yml file to my dev-branch for record
 - Ah-ha! moment: GitLab project visualbitliy must be set to "public" to allow deployment
 
 <br>

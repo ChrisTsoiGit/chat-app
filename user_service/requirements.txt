@@ -1,6 +1,8 @@
-fastapi[all]==0.78.0
+fastapi[all]==0.81.0
 uvicorn[standard]==0.17.6
 psycopg[binary,pool]==3.1.3  # use PostgreSQL with the service
 pymongo==4.2.0  # use MongoDB with the service
-black==22.10.0  # linter
+pydantic[email]
 websockets==10.3
+jwtdown-fastapi>=0.2.0
+black==22.10.0  # linter

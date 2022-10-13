@@ -55,6 +55,7 @@
 - db.replaceOne(filter, data, options)
 - db.deleteOne(filter, options)
 - db.deleteMany(filter, options)
+- db.getCollectionInfos()
 
 ```bson
 db.movies.insertOne({name: "Movie A", year: 1976})
@@ -72,15 +73,14 @@ db.movies.deleteMany({})
 
 ## Working in development branches:
 
-1. Creates a dev-branch:
+1. creates a dev-branch:
 
    ```python
    (main) $ git checkout -b my-branch  # create and change to a new branch
    (my-branch) $  # <-- hey look, I'm in my new branch
    ```
 
-2. Now each team member can mangle all they want without affecting the main branch or anyone else's dev-branch
-3. When a team member's branch is at a stable state and ready to be pushed to the main branch, follow these steps:
+2. push to the main branch, follow these steps:
    ![merging to main](/images/merge.png)
 
    ```python
@@ -103,7 +103,7 @@ db.movies.deleteMany({})
    (main) $ git checkout my-branch    # 8. change back to dev branch
    ```
 
-4. Merge conflicts
+3. Merge conflicts
 
 ---
 
