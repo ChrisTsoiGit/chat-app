@@ -1,4 +1,3 @@
-from urllib import response
 from fastapi import APIRouter
 from model import User, UserIn
 from queries import mongoclient
@@ -26,6 +25,9 @@ def get_user(user:User):
 @router.post("/createuser", response_model = User)
 async def create_user(user: UserIn):
     return user
+
+class DuplicateAccountError(ValueError):
+    pass
 
 
 

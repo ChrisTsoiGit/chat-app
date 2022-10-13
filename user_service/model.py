@@ -1,4 +1,3 @@
-from unittest.util import strclass
 from pydantic import BaseModel, Field, HttpUrl, EmailStr
 from datetime import date
 from typing import Optional
@@ -18,10 +17,20 @@ class UserOut(User):
 class UserInDB(User):
     _id: int
     date_created: date
-
-
-
-
-
 # **user_in.dict() - pedantic method that will convert your object into a dictionary
 # ** means passing in the dict into matching those model attricute.
+
+# accounts for login
+class DuplicatedAccountError(ValueError):
+    pass
+
+class AccountIn(BaseModel):
+    email: EmailStr
+    password: str
+    full_name: str
+
+class AccountOut(BaseModel):
+    id: str
+    email: EmailStr
+    full_name: str
+
