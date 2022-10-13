@@ -1,44 +1,30 @@
-from fastapi import FastAPI, Path
-from pydantic import BaseModel
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import os
+import routers
 
 app = FastAPI()
+app.include_router(routers.router)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        os.environ.get("CORS_HOST", "http://localhost:3000")
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-class BlogPost(BaseModel):
-    pic: str
-    location: str
-    time: str
-    likes: int
-
-class BlogComment(BaseModel):
-    blog: BlogPost
-    user: int
-    comment: str
-    time: int
-
-# class subcomment(BaseModel):
-#     comentorigin: BlogComment
-
-
-post = {
-    1: {
-        'pic': 'str',
-        'location': 'str',
-        'time': 'str',
-        'likes': 'int'
-    
-    }
-}
-
-
-
-@app.post('/create-post')
-def create_blogpost(item: BlogPost):
-    return {}
-
-    @app.post('/create-post')
-def create_blogpost(item: BlogPost):
-    return {}
-
-
-
+# @app.get("/api/launch-details")
+# def launch_details():
+#     return {
+#         "launch_details": {
+#             "year": 2022,
+#             "month": 10,
+#             "day": "28",
+#             "hour": 19,
+#             "min": 0,
+#             "tz:": "PST"
+#         }
+#     }

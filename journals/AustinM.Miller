@@ -1,0 +1,21 @@
+## 10/12/22
+    todays goal is to compleat micro service extention 
+    wms5ls5Ro2H75NYz
+    mongosh "mongodb+srv://cluster0.lnzhcez.mongodb.net/myFirstDatabase" --apiVersion 1 --username chatapp
+
+## 10/11/22
+    todays goals are to get start pulling chrises data from useres 
+    into my post and comments so building a value object did resurch 
+    today will implement mango db with cloud cluster and link chrises 
+    micro service to minew
+
+## 10/10/22
+    finaly started work on my branch. iu am tasked with building 
+    out the blog post and bolg comment section of our chat app 
+    there is a bit of a strugle making me the outsider of the 
+    group being a language barrier but i do not feel austrisised 
+    just a bit out of the loop here and there but were a cohesive 
+    grop. so to appproach i made a fresh api and got it up and 
+    running then got fast api docs to desplay after that just came 
+    down to learning nuances of fast api and thoe there hurdles im 
+    likeing the result far more then django,
