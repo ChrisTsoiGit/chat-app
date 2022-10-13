@@ -10,6 +10,7 @@ app.include_router(auth.auth.router)
 
 
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

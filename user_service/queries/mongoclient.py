@@ -2,8 +2,6 @@ from fastapi import FastAPI
 import pymongo
 import os
 
-
-
 # client = pymongo.MongoClient(os.environ["DATABASE_URL"])
 # dbname = os.environ['DATABASE_NAME']
 # db = client[dbname]
