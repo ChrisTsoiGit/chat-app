@@ -3,40 +3,11 @@ volumes:
         external: true
 
 services:
-<<<<<<< HEAD
-  sample_fastapi:
-    build:
-      context: sample_service
-      dockerfile: Dockerfile.dev
-    ports:
-      - 8000:8000
-    volumes:
-      - ./sample_service:/app
-
-  # user_fastapi:
-  #   build:
-  #     context: user_service
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - 8001:8000
-  #     # look up iner vs outer
-  #   volumes:
-  #     - ./user_service:/app
-
-  post_fastapi:
-=======
   user:
->>>>>>> 6b804a6c79176277d8bced5ffa6da72520188075
     build:
-      context: post_service
+      context: user_service
       dockerfile: Dockerfile.dev
     ports:
-<<<<<<< HEAD
-      - 8002:8000
-      # look up iner vs outer
-    volumes:
-      - ./post_service:/app
-=======
       - 8000:8000
     volumes:
       - ./user_service:/app
@@ -44,7 +15,20 @@ services:
       DATABASE_URL: mongodb://user:userpw@mongo
       DATABASE_NAME: userdb
       WAIT_HOSTS: mongo:27017
->>>>>>> 6b804a6c79176277d8bced5ffa6da72520188075
+
+  post:
+    build:
+      context: post_service
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8001:8000
+    volumes:
+      - ./post_service:/app
+    environment:
+      DATABASE_URL: mongodb://user:userpw@mongo
+      DATABASE_NAME: userdb
+      WAIT_HOSTS: mongo:27017
+  
   
   react:
     image: node:lts-bullseye
@@ -80,3 +64,17 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: userpw
       ME_CONFIG_MONGODB_URL: mongodb://user:userpw@mongo:27017/
 
+  post-poller:
+        build:
+            context: ./post_service/poll
+            dockerfile: ./Dockerfile.dev
+        volumes:
+            - ./post_service:/app
+        depends_on:
+            - post
+            - mongo
+        environment:
+            DATABASE_URL: mongodb://user:userpw@mongo
+            DATABASE_NAME: userdb
+            WAIT_HOSTS: mongo:27017
+            USERS_API: http://users:8000

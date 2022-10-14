@@ -24,6 +24,13 @@ def delete_blog(blog:BlogPost):
 def create_blogpost(blog: BlogPost):
     return blog
 
+# @router.post("/create-blog", response_model=BlogPost)
+# async def post_todo(blog: BlogPost):
+#     response = await create_todo(todo.dict())
+#     if response:
+#         return response
+#     raise HTTPException(400, "Something went wrong" )
+
 # #update post description
 # @router.update("/blog/{id}", response_model = BlogPost)
 # def get_blog(blog:BlogPost, data:BlogPost):
