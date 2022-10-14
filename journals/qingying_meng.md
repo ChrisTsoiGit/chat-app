@@ -11,7 +11,12 @@
 
 ## Thursday, 10/13/2022
 
-- continue working on JWTdown for FastAPI, easy login & logout
+- continue working on JWTdown for FastAPI:
+  - [x] create a user
+  - [x] easy login (assign a token) & logout (kill the token)
+  - [x] get the token after login
+  - [x] is api protected (return boolean)
+- blocker: received error (pydantic.error_wrappers.ValidationError: 1 validation error for AccountOutWithPw) when creating a new user, tried to debug, but doesn't work, will seek help from my team members.
 
 ## Wednesday, 10/12/2022
 

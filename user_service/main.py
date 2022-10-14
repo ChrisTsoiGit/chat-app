@@ -1,19 +1,14 @@
 import os
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import APIRouter
-from routers import users, websocket, authenticator
-from routers.authenticator import authenticator
-# from fastapi.security import OAuth2PasswordBearer
+from routers import accounts, authenticator, websocket
 
 # create app:
 app = FastAPI()
-
 # register router:
-app.include_router(users.router)
+app.include_router(accounts.router)
+app.include_router(authenticator.auth.router)
 app.include_router(websocket.router)
-app.include_router(authenticator.router)
-# app.include_router(user_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,8 +19,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-# @app.get("/items/")
-# async def read_items(token: str = Depends(oauth2_scheme)):
-#     return {"token": token}

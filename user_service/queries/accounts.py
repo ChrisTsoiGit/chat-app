@@ -18,15 +18,15 @@ class AccountOut(BaseModel):
     username : str
 
 class AccountOutWithPw(AccountIn):
-    hashed_passwordd: str
+    hashed_password: str
 
-# this queries should be DB
+# this queries should be DB:
 class AccountQueries(Queries):
     DB_NAME = "user"
     COLLECTION = "accounts"
 
-    def get(self, email: str) -> AccountOutWithPw:
-        props = self.collection.find_one({"email": email})
+    def get(self, username: str) -> AccountOutWithPw:
+        props = self.collection.find_one({"username": username})
         if not props:
             return None
         props["id"] = str(props["_id"])
@@ -35,10 +35,9 @@ class AccountQueries(Queries):
     def create(self, info:AccountIn, hashed_password:str) -> AccountOutWithPw:
         props = info.dict()
         props["password"] = hashed_password
-        # props["roles"] = roles
         try:
             self.collection.insert_one(props)
         except DuplicateKeyError:
             raise DuplicateAccountError()
-        props["id"] = str(props["_id"])
+        props["id"] = str(props["_id"])  # ObjectId -> str
         return AccountOutWithPw(**props)

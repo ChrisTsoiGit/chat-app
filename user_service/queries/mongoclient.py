@@ -8,8 +8,7 @@ MONGO_URL = os.environ["DATABASE_URL"]
 client = pymongo.MongoClient(MONGO_URL)
 
 dbname = os.environ['DATABASE_NAME']
-# connect to a specific database name:
-db = client[dbname]
+db = client[dbname]  # connect to a specific database name
 
 class Queries:
     @property

@@ -21,7 +21,7 @@ services:
       DATABASE_URL: mongodb://user:userpw@mongo
       DATABASE_NAME: userdb
       WAIT_HOSTS: mongo:27017
-      SIGNING_KEY: 123456abcde
+      SIGNING_KEY: fbc7f31f-422b-41c1-a807-fe3ab7f37be7 # Heroku API key (edited)
       # WAIT_HOSTS: mongo:27017
       # WAIT_BEFORE: 5
       # WAIT_TIMEOUT: 60

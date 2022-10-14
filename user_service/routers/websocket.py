@@ -64,9 +64,7 @@ class ConnectionManager:
         self.current_message_id += 1
         return self.current_message_id
 
-
 manager = ConnectionManager()
-
 
 @router.websocket("/chat/{client_id}")
 async def websocket_endpoint(
