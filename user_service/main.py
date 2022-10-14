@@ -8,7 +8,12 @@ app.include_router(accounts.router)
 app.include_router(websocket.router)
 app.include_router(auth.auth.router)
 
-
+# origins = [
+#     "http://localhost.tiangolo.com",
+#     "https://localhost.tiangolo.com",
+#     "http://localhost",
+#     "http://localhost:8080",
+# ]
 
 
 app.add_middleware(
