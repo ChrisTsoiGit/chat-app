@@ -1,32 +1,59 @@
-from urllib import response
-from fastapi import APIRouter
-from model import User, UserIn
-from queries import mongoclient
+# router.py
+from fastapi import (
+    Depends,
+    HTTPException,
+    status,
+    Response,
+    APIRouter,
+    Request,
+)
+from jwtdown_fastapi.authentication import Token
+from routers.auth import auth
 
+from pydantic import BaseModel
+
+from queries.accounts import (
+    AccountIn,
+    AccountOut,
+    AccountPasswordDB,
+    DuplicateAccountError,
+    AccountStatus,
+)
+from queries.accounts import AccountQueries
+
+class AccountForm(BaseModel):
+    username: str
+    password: str
+
+class AccountToken(Token):
+    account: AccountOut
+
+class HttpError(BaseModel):
+    detail: str
 
 router = APIRouter()
 
-# homepage
-@router.get("/")
-def index():
-    return {"message": "Welcome To FastAPI World"}
 
+@router.post("/api/accounts", response_model=AccountStatus | HttpError)
+async def create_account(
+    info: AccountIn,  #this is what should be in the body
+    request: Request,
+    response: Response,
+    accounts: AccountQueries = Depends(),
+):
+    hashed_password = auth.hash_password(info.password)
+    try:
+        account = accounts.create(info, hashed_password)
+    except DuplicateAccountError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot create an account with those credentials",
+        )
+    form = AccountForm(username=info.username, password=info.password)
+    # token = await auth.login(response, request, form, accounts)
+    # return AccountToken(account=account, **token.dict())
+    return AccountStatus(successcreated = True)
 
-# get all users
-@router.get("/users", response_model = User)
-def get_user(user:User):
-    return user
-
-# get a user
-@router.get("/users/{id}", response_model = User)
-def get_user(user:User):
-    return user
-
-# post user
-@router.post("/createuser", response_model = User)
-async def create_user(user: UserIn):
-    return user
-
-
-
-
+# @router.get("/api/accounts", response_model=AccountToken | HttpError)
+# async def get_user():
+#     return AccountOut
