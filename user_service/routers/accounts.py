@@ -1,4 +1,5 @@
 # router.py
+from urllib import response
 from fastapi import (
     Depends,
     HTTPException,
@@ -7,11 +8,6 @@ from fastapi import (
     APIRouter,
     Request,
 )
-from jwtdown_fastapi.authentication import Token
-from routers.auth import auth
-
-from pydantic import BaseModel
-
 from queries.accounts import (
     AccountIn,
     AccountOut,
@@ -20,6 +16,10 @@ from queries.accounts import (
     AccountStatus,
 )
 from queries.accounts import AccountQueries
+from jwtdown_fastapi.authentication import Token
+from routers.auth import auth
+from pydantic import BaseModel
+
 
 class AccountForm(BaseModel):
     username: str
@@ -31,7 +31,33 @@ class AccountToken(Token):
 class HttpError(BaseModel):
     detail: str
 
+
 router = APIRouter()
+
+
+# protected/ you have to be logged in for this
+@router.get("/api/protected", response_model=bool)
+async def get_protected(
+    #ex: vacation: VacationsQueries = Depends(),
+    account_data: dict = Depends(auth.get_current_account_data),
+):
+    return True  
+    # return vacations.get_account_vacations(account_data)
+
+
+# get token/ to be protected by something
+# if the try_get_current_account_data existed, it will return the account
+@router.get("/api/token", response_model=AccountToken | None)
+async def get_token(
+    request: Request,
+    account: AccountOut = Depends(auth.try_get_current_account_data)
+) -> AccountToken | None:
+    if auth.cookie_name in request.cookies:
+        return {
+            "access_token": request.cookies[auth.cookie_name],
+            "type": "Bearer",
+            "account": account,
+        }
 
 
 @router.post("/api/accounts", response_model=AccountStatus | HttpError)

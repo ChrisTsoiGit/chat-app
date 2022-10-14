@@ -1,3 +1,13 @@
+## October 13, 2022
+
+Today, I worked on:
+
+* Finsihed Authentication for login, logout, signup endpoints.
+
+Todoy, I finsihed writing a function for signup endpoint and tesing if the registration information can be sent to the database. 
+I solved the bug from yesterday and the registration information has successfully sent to the database.
+
+
 ## October 12, 2022
 
 Today, I worked on:

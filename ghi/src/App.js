@@ -36,12 +36,13 @@
 // }
 
 // export default App;
-
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Chat from './chat.js';
-// import SignUp from './SignUp';
+import SignUpModal from './SignUpModal';
 import './index.css';
+import LogInModal from './LoginModal';
 
 function App() {
   return (
@@ -50,7 +51,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/chat" element={<Chat/>} />
-          {/* <Route path="/signup" element={<SignUp/>} /> */}
+          <Route path="/login" element={<LogInModal/>} />
+          <Route path="/signup" element={<SignUpModal/>} />
+
         </Routes>
       </div>
     </BrowserRouter>
