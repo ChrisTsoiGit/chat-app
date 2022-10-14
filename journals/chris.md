@@ -1,3 +1,13 @@
+## October 12, 2022
+
+Today, I worked on:
+
+* Working on Authentication for login, register logout endpoints.
+
+Todoy, I finsihed writing a function for register endpoint and tesing if the registration information can be sent to the database. 
+While testing the endpoint, the registration information has successfully sent to the database, but there is an error saying wrong password and username.
+
+
 ## October 11, 2022
 
 Today, I worked on:
