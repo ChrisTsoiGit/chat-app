@@ -17,6 +17,7 @@ from queries.accounts import (
     AccountOut,
     AccountPasswordDB,
     DuplicateAccountError,
+    AccountStatus,
 )
 from queries.accounts import AccountQueries
 
@@ -33,7 +34,7 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
-@router.post("/api/accounts", response_model=AccountToken | HttpError)
+@router.post("/api/accounts", response_model=AccountStatus | HttpError)
 async def create_account(
     info: AccountIn,  #this is what should be in the body
     request: Request,
@@ -49,8 +50,9 @@ async def create_account(
             detail="Cannot create an account with those credentials",
         )
     form = AccountForm(username=info.username, password=info.password)
-    token = await auth.login(response, request, form, accounts)
-    return AccountToken(account=account, **token.dict())
+    # token = await auth.login(response, request, form, accounts)
+    # return AccountToken(account=account, **token.dict())
+    return AccountStatus(successcreated = True)
 
 # @router.get("/api/accounts", response_model=AccountToken | HttpError)
 # async def get_user():

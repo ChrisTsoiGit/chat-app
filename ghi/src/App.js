@@ -40,6 +40,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Chat from './chat.js';
+// import SignUp from './SignUp';
 import './index.css';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/chat" element={<Chat/>} />
+          {/* <Route path="/signup" element={<SignUp/>} /> */}
         </Routes>
       </div>
     </BrowserRouter>

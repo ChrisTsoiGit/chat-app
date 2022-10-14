@@ -5,6 +5,9 @@ from model import PydanticObjectId
 class DuplicateAccountError(ValueError):
     pass
 
+class AccountStatus(BaseModel):
+    successcreated: bool
+
 class AccountIn(BaseModel):
     username : str
     email: EmailStr
@@ -26,8 +29,8 @@ class AccountQueries(Queries):
     DB_NAME = "user"
     COLLECTION = "accounts"
 
-    def get(self, email:str) -> AccountPasswordDB:
-        props = self.collection.find_one({"email": email})
+    def get(self, username:str) -> AccountPasswordDB:
+        props = self.collection.find_one({"username": username})
         if not props:
             return None
         props["id"] = str(props["_id"])
