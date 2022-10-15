@@ -11,6 +11,11 @@
 
 ## Thursday, 10/13/2022
 
+- (with help from Andrew) debugged the ValidationError of creating a new user
+- dwf
+
+## Thursday, 10/13/2022
+
 - continue working on JWTdown for FastAPI:
   - [x] create a user
   - [x] easy login (assign a token) & logout (kill the token)

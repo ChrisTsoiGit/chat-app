@@ -23,7 +23,7 @@ from typing import Any, NoReturn
 from bson.objectid import ObjectId
 from bson.raw_bson import RawBSONDocument
 from bson.son import SON
-from pymongo import common
+from pymongo import _csot, common
 from pymongo.client_session import _validate_session_write_concern
 from pymongo.collation import validate_collation_or_none
 from pymongo.common import (
@@ -315,8 +315,7 @@ class _Bulk(object):
                 cmd = SON([(cmd_name, self.collection.name), ("ordered", self.ordered)])
                 if self.comment:
                     cmd["comment"] = self.comment
-                if not write_concern.is_server_default:
-                    cmd["writeConcern"] = write_concern.document
+                _csot.apply_write_concern(cmd, write_concern)
                 if self.bypass_doc_val:
                     cmd["bypassDocumentValidation"] = True
                 if self.let is not None and run.op_type in (_DELETE, _UPDATE):
@@ -330,6 +329,8 @@ class _Bulk(object):
                     session._apply_to(cmd, retryable, ReadPreference.PRIMARY, sock_info)
                 sock_info.send_cluster_time(cmd, session, client)
                 sock_info.add_server_api(cmd)
+                # CSOT: apply timeout before encoding the command.
+                sock_info.apply_timeout(client, cmd)
                 ops = islice(run.ops, run.idx_offset, None)
 
                 # Run as many ops as possible in one command.

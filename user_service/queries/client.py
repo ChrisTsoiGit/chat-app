@@ -1,26 +1,12 @@
-# from urllib import response
-# from fastapi import APIRouter
-# from queries import mongoclient
+import os
+import pymongo
 
-# router = APIRouter()
+# create a Mongo client to connect to the DDBMS (Distributed Database Management System):
+MONGO_URL = os.environ["DATABASE_URL"]
+client = pymongo.MongoClient(MONGO_URL)
 
-# # homepage
-# @router.get("/")
-# def index():
-#     return {"message": "Welcome To FastAPI World"}
-
-
-# # get all users
-# @router.get("/users", response_model = User)
-# def get_user(user:User):
-#     return user
-
-# # get a user
-# @router.get("/users/{id}", response_model = User)
-# def get_user(user:User):
-#     return user
-
-# # post user
-# @router.post("/createuser", response_model = User)
-# async def create_user(user: UserIn):
-#     return user
+class Queries:
+    @property
+    def collection(self):
+        db = client[self.DB_NAME] # accountQueries
+        return db[self.COLLECTION]

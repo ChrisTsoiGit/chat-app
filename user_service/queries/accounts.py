@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from queries.mongoclient import Queries
+from .client import Queries
 from pymongo.errors import DuplicateKeyError
+# from typing import List
 
 class DuplicateAccountError(ValueError):
     pass
@@ -10,6 +11,7 @@ class AccountIn(BaseModel):
     full_name: str
     username : str
     password: str
+    # blogs: List[str]
 
 class AccountOut(BaseModel):
     id: str
@@ -20,9 +22,8 @@ class AccountOut(BaseModel):
 class AccountOutWithPw(AccountIn):
     hashed_password: str
 
-# this queries should be DB:
 class AccountQueries(Queries):
-    DB_NAME = "user"
+    DB_NAME = "mongo-data"
     COLLECTION = "accounts"
 
     def get(self, username: str) -> AccountOutWithPw:
@@ -34,7 +35,7 @@ class AccountQueries(Queries):
 
     def create(self, info:AccountIn, hashed_password:str) -> AccountOutWithPw:
         props = info.dict()
-        props["password"] = hashed_password
+        props["hashed_password"] = hashed_password
         try:
             self.collection.insert_one(props)
         except DuplicateKeyError:

@@ -19,13 +19,15 @@ from queries.accounts import (
     DuplicateAccountError,
 )
 
-
 class AccountForm(BaseModel):
     username: str
     password: str
 
 class AccountToken(Token):
     account: AccountOut
+
+class AccountStatus(BaseModel):
+    status: bool
 
 class HttpError(BaseModel):
     detail: str
@@ -42,7 +44,7 @@ async def get_protected(
 ):
     return True
 
-@router.post("/api/accounts", response_model=AccountOut | HttpError)
+@router.post("/api/accounts", response_model=AccountStatus | HttpError)
 async def create_account(
     info: AccountIn,
     request: Request,
@@ -58,8 +60,9 @@ async def create_account(
             detail="Cannot create an account with those credentials",
         )
     form = AccountForm(username=info.username, password=info.password)
-    token = await auth.login(response, request, form, accounts)
-    return AccountOut(account=account, **token.dict())
+    # token = await auth.login(response, request, form, accounts)
+    # return AccountOut(account=account, **token.dict())
+    return  AccountStatus(status=True)
 
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(

@@ -9,7 +9,7 @@
   - demonstrate ability to use MongoDB to ...
   - demonstrate ability to work with others in a team setting
 - Team members & responsibilities:
-  - Austin Miller: blog post(CRUD/comment/fetch posts) and share
+  - Austin Miller: blog post and share
   - Chris Tsoi: contacts and contacts list
   - Echo Yang: user login/logout
   - Qingying Meng: chat and chats history
@@ -34,44 +34,39 @@
   ```
   git clone https://gitlab.com/chatapp12/chat-app.git
   ```
-- Run docker compose up
 
 ---
 
 ## Project setup:
 
-- ***
+### Virtual environment
 
-## MongoDB CRUD operations:
+- create virtual environment & activate:
+  ```python
+  python -m venv .venv
+  source .venv/bin/activate
+  ```
+- update pip:
+  ```python
+  python -m pip install --upgrade pip
+  ```
+- install dependencies:
+  ```python
+  pip install -r requirements.txt
+  ```
 
-- db.createCollection(collection_name, options)
-- db.insertOne(data, options)
-- db.insertMany(data, options)
-- db.indOne(filter, options)
-- db.find(filter, options)
-- db.update(filter, data, options)
-- db.updateOne(filter, data, options)
-- db.updateMany(filter, data, options)
-- db.replaceOne(filter, data, options)
-- db.deleteOne(filter, options)
-- db.deleteMany(filter, options)
-- db.getCollectionInfos()
+### Docker
 
-```bson
-db.movies.insertOne({name: "Movie A", year: 1976})
-db.movies.insertOne({name: "Movie B", year: 2001, cast: {director: "Joseph", actors: ["Kate", "Yuri", "Kai"]}})
-db.movies.find(year: {$gt{1900}})
-db.movies.find().pretty()
-db.moovies.updateOne({year: 1976}, {$set: {marker: "delete"}})
-db.moovies.updateOne({}, {$set: {marker: "toDelete"}})
-db.movies.deleteOne({db.movies.deleteOne({})})
-db.movies.deleteMany({marker: "toDelete"})
-db.movies.deleteMany({})
+create the sample-data volume before composing up:
+
+```
+docker volume create sample-data
+docker compose build
+docker compose up
+docker image prune -a
 ```
 
----
-
-## Working in development branches:
+### Working in dev branches:
 
 1. creates a dev-branch:
 
@@ -107,50 +102,45 @@ db.movies.deleteMany({})
 
 ---
 
-## Virtual environment & FastAPI installation:
+## Front-end:
 
-- FastAPI
-  - fastapienv
-    - bin
-    - lib
-  - chats.py
+---
 
-1. change shell from zsh to bash:
+## Back-end:
 
-   ```python
-   chsh -s /bin/bash
-   ```
+- start application by running uvicorn & start reloader and server process
+  ```python
+  uvicorn main:app --reload
+  ```
+  - open http://127.0.0.1:8000/ in browser
+  - default FastAPI swagger page: http://127.0.0.1:8000/docs
 
-2. create virtual environment with project directory:
+### MongoDB CRUD operations:
 
-   ```python
-   cd desktop
-   mkdir FastAPI
-   cd FastAPI
-   pip list  # check if virtualenv is already install
-   pip install virtualenv  # if not, install virtualenv
-   python -m venv .fastapienv  # create virtualEnv for fastapienv
-   # activate virtualEnv:
-   source .fastapienv/bin/activate
-   # [OPTIONAL] deactivate virtualEnv:
-   source .fastapienv/bin/deactivate
-   ```
+- db.createCollection(collection_name, options)
+- db.insertOne(data, options)
+- db.insertMany(data, options)
+- db.indOne(filter, options)
+- db.find(filter, options)
+- db.update(filter, data, options)
+- db.updateOne(filter, data, options)
+- db.updateMany(filter, data, options)
+- db.replaceOne(filter, data, options)
+- db.deleteOne(filter, options)
+- db.deleteMany(filter, options)
+- db.getCollectionInfos()
 
-3. install all of the dependencies for FastAPI:
-
-   ```python
-   cd FastAPI
-   pip install fastapi[all]
-   ```
-
-4. start application by running uvicorn & start reloader and server process
-
-   ```python
-   uvicorn main:app --reload
-   ```
-
-   - open http://127.0.0.1:8000/ in browser
-   - default FastAPI swagger page: http://127.0.0.1:8000/docs
+```bson
+db.movies.insertOne({name: "Movie A", year: 1976})
+db.movies.insertOne({name: "Movie B", year: 2001, cast: {director: "Joseph", actors: ["Kate", "Yuri", "Kai"]}})
+db.movies.find(year: {$gt{1900}})
+db.movies.find().pretty()
+db.moovies.updateOne({year: 1976}, {$set: {marker: "delete"}})
+db.moovies.updateOne({}, {$set: {marker: "toDelete"}})
+db.movies.deleteOne({db.movies.deleteOne({})})
+db.movies.deleteMany({marker: "toDelete"})
+db.movies.deleteMany({})
+```
 
 ---
 
@@ -177,33 +167,6 @@ db.movies.deleteMany({})
 10. When that succeeds, go see if your site is up: Settings > Pages > click the link
 
 ---
-
-## Getting started
-
-You have a project repository, now what? The next section lists all of the deliverables that are due at the end of the week. Below is some guidance for getting started on the tasks for this week.
-
-## Deliverables
-
-- [ ] Wire-frame diagrams
-- [ ] API documentation
-- [ ] Project is deployed to Heroku/GitLab-pages
-- [ ] GitLab issue board is setup and in use
-
-## Project layout
-
-The layout of the project is just like all of the projects you did with `docker-compose` in module #2. You will create a directory in the root of the repository for each service that you add to your project just like those previous projects were setup.
-
-### Directories
-
-Several directories have been added to your project. The directories `docs` and `journals` are places for you and your team-mates to, respectively, put any documentation about your project that you create and to put your project-journal entries. See the README file in each directory for more info.
-
-The other directories, `ghi` and `sample_service`, are sample services, that you can start building off of or use as a reference point.
-
-Inside of `ghi` is a minimal React app that has an "under construction" page. It is setup similarly to all of the other React projects that you have worked on.
-
-Inside of `sample_service` is a minimal FastAPI application. "Where are all the files?" you might ask? Well, the `main.py` file is the whole thing, and go take look inside of it... There's not even much in there..., hmm? That is FastAPI, we'll learn more about it in the coming days. Can you figure out what this little web-application does even though you haven't learned about FastAPI yet?
-
-### Other files
 
 The following project files have created as a minimal starting point. Please follow the guidance for each one for a most successful project.
 

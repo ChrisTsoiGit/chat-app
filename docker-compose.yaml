@@ -18,10 +18,10 @@ services:
     volumes:
       - ./user_service:/app
     environment: # (environ)
+      SIGNING_KEY: fbc7f31f-422b-41c1-a807-fe3ab7f37be7
       DATABASE_URL: mongodb://user:userpw@mongo
       DATABASE_NAME: userdb
       WAIT_HOSTS: mongo:27017
-      SIGNING_KEY: fbc7f31f-422b-41c1-a807-fe3ab7f37be7 # Heroku API key (edited)
       # WAIT_HOSTS: mongo:27017
       # WAIT_BEFORE: 5
       # WAIT_TIMEOUT: 60
@@ -40,6 +40,7 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       REACT_APP_FASTAPI_SERVICE: http://localhost:8000
+      REACT_APP_AUTH_HOST: http://localhost:8100
 
   mongo:
     image: mongo:5
