@@ -2,9 +2,9 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    Response,
     APIRouter,
     Request,
+    Response,
 )
 
 from jwtdown_fastapi.authentication import Token
@@ -13,11 +13,12 @@ from pydantic import BaseModel
 from typing import Optional
 
 from queries.accounts import (
+    DuplicateAccountError,
     AccountIn,
     AccountOut,
     AccountQueries,
-    DuplicateAccountError,
 )
+
 
 class AccountForm(BaseModel):
     username: str
@@ -32,18 +33,20 @@ class AccountStatus(BaseModel):
 class HttpError(BaseModel):
     detail: str
 
+
 router = APIRouter()
 
 @router.get("/")
-def hello():
+def greet():
     return {"msg": "Hello, welcome to FAstAPI world!"}
 
-@router.get("/api/protected", response_model=bool)
-async def get_protected(
-    account_data: Optional[dict] = Depends(auth.try_get_current_account_data),
-):
-    return True
+# @router.get("/api/protected", response_model=bool)
+# async def get_protected(
+#     account_data: Optional[dict] = Depends(auth.try_get_current_account_data),
+# ):
+#     return True
 
+# @router.post("/api/accounts", response_model=AccountToken | HttpError)
 @router.post("/api/accounts", response_model=AccountStatus | HttpError)
 async def create_account(
     info: AccountIn,
@@ -51,6 +54,7 @@ async def create_account(
     response: Response,
     accounts: AccountQueries = Depends(),
 ):
+    # jwtdown_fastapi > authentication.py > class Authenticator > def hash_password():
     hashed_password = auth.hash_password(info.password)
     try:
         account = accounts.create(info, hashed_password)
@@ -60,6 +64,7 @@ async def create_account(
             detail="Cannot create an account with those credentials",
         )
     form = AccountForm(username=info.username, password=info.password)
+    # # jwtdown_fastapi > authenntication.py > class Authenticator > def login():
     # token = await auth.login(response, request, form, accounts)
     # return AccountOut(account=account, **token.dict())
     return  AccountStatus(status=True)
