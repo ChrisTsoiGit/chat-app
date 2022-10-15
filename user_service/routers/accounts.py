@@ -40,12 +40,6 @@ router = APIRouter()
 def greet():
     return {"msg": "Hello, welcome to FAstAPI world!"}
 
-# @router.get("/api/protected", response_model=bool)
-# async def get_protected(
-#     account_data: Optional[dict] = Depends(auth.try_get_current_account_data),
-# ):
-#     return True
-
 # @router.post("/api/accounts", response_model=AccountToken | HttpError)
 @router.post("/api/accounts", response_model=AccountStatus | HttpError)
 async def create_account(
@@ -80,3 +74,10 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
+# login to access:
+@router.get("/api/protected", response_model=bool)
+async def get_protected(
+    account_data: Optional[dict] = Depends(auth.try_get_current_account_data),
+):
+    return True

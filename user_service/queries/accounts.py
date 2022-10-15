@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from .client import Queries
 from pymongo.errors import DuplicateKeyError
+from model import PydanticObjectId
 # from typing import List
 
 class DuplicateAccountError(ValueError):
@@ -20,6 +21,7 @@ class AccountOut(BaseModel):
     username : str
 
 class AccountOutWithPw(AccountIn):
+    id: PydanticObjectId
     hashed_password: str
 
 class AccountQueries(Queries):
