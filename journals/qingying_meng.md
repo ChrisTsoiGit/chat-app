@@ -1,4 +1,4 @@
-# Developer's Journal
+# Developer's Journal_Qingying
 
 ## Template:
 
@@ -9,14 +9,19 @@
 
 ---
 
-## Thursday, 10/13/2022
+## Friday, 10/14/2022
 
-- (with help from Andrew) debugged the ValidationError of creating a new user
+- Debugged the ValidationError of creating a new user with Andrew's help
+
+  ![API-DB communication: create a user](/images/API-DB-commu1.png)
+
+  ![API-DB communication: create another user](/images/API-DB-commu2.png)
+
 - Finished signup/login/logout/get_token/get_protected endpoints
 - Ah-ha! moment:
   - [x] use **_get_current_account_data_** to look for a bearer token in the Authorization header
+  - [x] use **_try_get_current_account_data_** to get OPTIONAL current account data
   - [x] use **_try_get_current_account_data_** and **_authenticator.cookie_name_** to send back a payload that contains the JWT for use in fetch calls to non-authenticating services
-  - [x] use **_authenticator.try_get_current_account_data_** to get OPTIONAL current account data
 
 ## Thursday, 10/13/2022
 
@@ -49,7 +54,7 @@
 
 ## Friday off, 10/7/2022
 
-- Learnt developing CRUD application using FastAPI & MongoDB
+- Self-learning: developing CRUD application using FastAPI & MongoDB
 
 <br>
 
