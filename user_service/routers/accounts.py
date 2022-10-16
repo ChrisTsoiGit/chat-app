@@ -78,6 +78,6 @@ async def get_token(
 # login to access:
 @router.get("/api/protected", response_model=bool)
 async def get_protected(
-    account_data: Optional[dict] = Depends(auth.try_get_current_account_data),
+    account_data: dict = Depends(auth.get_current_account_data),
 ):
     return True
