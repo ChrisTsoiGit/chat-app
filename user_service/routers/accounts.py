@@ -75,7 +75,7 @@ async def get_token(
             "account": account,
         }
 
-# login to access:
+# secure  to a logged in user (throw 401 if unauthorized):
 @router.get("/api/protected", response_model=bool)
 async def get_protected(
     account_data: dict = Depends(auth.get_current_account_data),
