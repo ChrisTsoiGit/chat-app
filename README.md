@@ -10,11 +10,24 @@
 Vintage classic chatroom which bring you back to the old time where everyone can gathering together in the same channel to exchange all their ideas. Great for making new friends! 
 
 ## Design
-![merging to main](/images/planning.png)
+![merging to main](/image/planning.png)
+- User can register on the registration page using username, email and password.
+- Pre registered can access the chatroom by using the sign up page.
+- Non-registered users is not allowed to access to the chatroom.
+- The chatroom can support multi logged in users chatting in the same room at the same time.
 
-## Project layout
+## Project Setup
 
-The layout of the project is just like all of the projects you did with `docker-compose` in module #2. You will create a directory in the root of the repository for each service that you add to your project just like those previous projects were setup.
+1. Visit this [Chatroom](https://gitlab.com/chatapp12/chat-app.git) repository.
+2. Click the blue clone button and copy the URL under the Clone with HTTPS.
+3. Open the terminal and change(cd) to a directory where to store this application(Chatroom).
+4. Type ***git clone*** and paste the URL cloned in step 2.
+5. After the application is cloned locally, change(cd) the directories into the application(Chatroom) directory.
+6. Install and Open Docker Desktop.
+7. In the terminal, type ***docker-compose build*** to build Docker image.
+8. Type ***docker volume create mongo-data*** to create the volume.
+9. Type ***docker-up build*** to run the cotainers.
+ 10. Type http://localhost:3000 in the browser, and explore the Chatroom log in page.
 
 ### Directories
 
