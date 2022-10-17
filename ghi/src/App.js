@@ -38,19 +38,20 @@
 
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainPage from "./MainPage";
+import Nav from "./Nav";
 import SignUpModal from "./SignUpModal";
-import LogInModal from "./LoginModal";
+import LogInModal from "./LogInModal";
+import UserList from "./UserList";
 import Chat from "./Chat.js";
 import "./index.css";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <div className="container">
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/signup" element={<SignUpModal />} />
+          <Route path="/users/new" element={<SignUpModal />} />
+          <Route path="/users" element={<UserList />} />
           <Route path="/login" element={<LogInModal />} />
           <Route path="/chat" element={<Chat />} />
         </Routes>
