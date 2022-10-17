@@ -1,3 +1,4 @@
+import React from "react";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogInMutation } from "./app/api";
@@ -7,7 +8,7 @@ import Notification from "./Notification";
 
 function LogInModal() {
   const dispatch = useDispatch();
-  const { show, username, password } = useSelector((state) => state.account);
+  const { show, username, password } = useSelector((state) => state.users);
   const modalClass = `modal ${show === LOG_IN_MODAL ? "is-active" : ""}`;
   const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
   const field = useCallback(

@@ -7,3 +7,5 @@ export const store = configureStore({
     [usersApi.reducerPath]: usersApi.reducer,
   },
 });
+
+export default store;

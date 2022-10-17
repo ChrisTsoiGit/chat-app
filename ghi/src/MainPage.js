@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import React from "react";
 function MainPage() {
   return <h1>This is the mainpage</h1>;
 }
