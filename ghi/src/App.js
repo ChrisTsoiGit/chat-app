@@ -43,17 +43,19 @@ import SignUpModal from "./SignUpModal";
 import LogInModal from "./LogInModal";
 import UserList from "./UserList";
 import Chat from "./Chat.js";
+import MainPage from "./MainPage";
 import "./index.css";
 
 function App() {
   return (
-    <BrowserRouter basename={basename}>
+    <BrowserRouter>
       <div className="container">
         <Routes>
           <Route path="/users/new" element={<SignUpModal />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/login" element={<LogInModal />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/main" element={<MainPage />} />
         </Routes>
       </div>
     </BrowserRouter>

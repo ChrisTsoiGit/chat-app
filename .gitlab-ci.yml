@@ -10,6 +10,8 @@ build-front-end-job:
   variables:
     PUBLIC_URL: https://chatapp12.gitlab.io/chat-app
     REACT_APP_API_HOST: https://newchat-heroku.herokuapp.com
+    # PUBLIC_URL: https://qmeng222.gitlab.io/safe-chat
+    # REACT_APP_API_HOST: https://my-safe-chat.herokuapp.com
   script:
     - cd ghi
     - npm install

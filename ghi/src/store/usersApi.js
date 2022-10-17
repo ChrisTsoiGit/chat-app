@@ -8,7 +8,7 @@ export const usersApi = createApi({
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => "/api/users/",
-      //  query: (id) => "/api/trucks/" + id,
+      //  query: (id) => "/api/users/" + id,
     }),
   }),
 });
