@@ -5,7 +5,7 @@ from model import PydanticObjectId
 # from typing import List
 
 class DuplicateAccountError(ValueError):
-    pass
+    {"msg": "Accout already created"}
 
 class AccountIn(BaseModel):
     email: str
@@ -25,7 +25,7 @@ class AccountOutWithPw(AccountIn):
     hashed_password: str
 
 class AccountQueries(Queries):
-    DB_NAME = "mongo-data"
+    DB_NAME = "user"
     COLLECTION = "accounts"
 
     def get(self, username: str) -> AccountOutWithPw:

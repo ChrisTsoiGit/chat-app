@@ -40,6 +40,10 @@ router = APIRouter()
 def greet():
     return {"msg": "Hello, welcome to FAstAPI world!"}
 
+@router.get("/api/accounts")
+def list_accounts():
+    return {"msg": "Accounts are here"}
+
 # @router.post("/api/accounts", response_model=AccountToken | HttpError)
 @router.post("/api/accounts", response_model=AccountStatus | HttpError)
 async def create_account(

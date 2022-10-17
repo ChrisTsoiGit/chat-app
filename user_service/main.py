@@ -10,6 +10,10 @@ app.include_router(accounts.router)
 app.include_router(authenticator.auth.router)
 app.include_router(websocket.router)
 
+origins = [
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
