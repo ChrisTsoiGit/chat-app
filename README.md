@@ -1,14 +1,16 @@
-# Module3 Project Gamma
+# Module3 Project Gamma-Chatroom App
 
-## Getting started
+- Austin Miller
+- Chris Tsoi
+- Echo Yang
+- Qingying Meng
 
-You have a project repository, now what? The next section lists all of the deliverables that are due at the end of the week. Below is some guidance for getting started on the tasks for this week.
+## Intended market
 
-## Deliverables
-- [ ] Wire-frame diagrams
-- [ ] API documentation
-- [ ] Project is deployed to Heroku/GitLab-pages
-- [ ] GitLab issue board is setup and in use
+Vintage classic chatroom which bring you back to the old time where everyone can gathering together in the same channel to exchange all their ideas. Great for making new friends! 
+
+## Design
+![merging to main](/images/planning.png)
 
 ## Project layout
 
