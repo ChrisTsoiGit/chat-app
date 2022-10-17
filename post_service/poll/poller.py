@@ -1,27 +1,18 @@
 import json
 import time
-import requests
+# import requests
 import sys
-from fastapi import FastAPI
-
-# sys.path.appenf('')
-# os.environ.setdefault(#??? what goses here and do i need to build an enviournment to pull in fast api)
+import requests
 
 
-from post_service.model import UserVO
-
-app = FastAPI()
-
-@app.post("/createuser", response_model = UserVO)
-async def create_user(user: UserVO):
-    return user
 
 def get_user():
     url = "http://localhost:8000/users"
+    print("the poller is running")
     responce = requests.get(url)
     content = json.loads(responce.content)
     for user in content["User"]:
-        create_user(user)
+        print(user)
         
         # UserVO.objects.update_or_create(
         #     # username: str
@@ -39,4 +30,6 @@ def poll():
             print(e, file=sys.stderr)
         time.sleep(60)
 
-            
+
+if __name__ == "__main__":
+    poll()

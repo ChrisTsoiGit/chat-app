@@ -69,7 +69,7 @@ services:
             context: ./post_service/poll
             dockerfile: ./Dockerfile.dev
         volumes:
-            - ./post_service:/app
+            - ./post_service/poll:/app
         depends_on:
             - post
             - mongo
