@@ -9,6 +9,14 @@
 
 ---
 
+<br>
+
+## Monday, 10/17/2022
+
+- finished LogInModal.js and LogOutModal.js (v.1.)
+
+<br>
+
 ## Friday, 10/14/2022
 
 - Debugged the ValidationError of creating a new user with Andrew's help
@@ -23,6 +31,8 @@
   - [x] use **_try_get_current_account_data_** to get OPTIONAL current account data
   - [x] use **_try_get_current_account_data_** and **_authenticator.cookie_name_** to send back a payload that contains the JWT for use in fetch calls to non-authenticating services
 
+<br>
+
 ## Thursday, 10/13/2022
 
 - continue working on JWTdown for FastAPI:
@@ -32,17 +42,23 @@
   - [x] is api protected (return boolean)
 - blocker: received error (pydantic.error_wrappers.ValidationError: 1 validation error for AccountOutWithPw) when creating a new user, tried to debug, but doesn't work, will seek help from my team members.
 
+<br>
+
 ## Wednesday, 10/12/2022
 
 - edited docker-compose.yaml
 - learnt JWTdown for FastAPI:
   - [] FastAPI - Swagger UI: http://localhost:8000/docs
 
+<br>
+
 ## Tuesday, 10/11/2022
 
 - wrote the userEntity function and listOfUserEntity function
 - enabled MongoDB CRUD operations in user_service
 - Ah-ha! moment:
+
+<br>
 
 ## Monday, 10/10/2022
 
@@ -63,6 +79,8 @@
 - updatd ReadMe with responsibilities assigned for each team member, plus MongoDB CRUD operations
 - worked on data schemas and data modelling
 - Ah-ha! moment: in MongoDB, we can build one-to-many relationsuse using references (e.g. \_id) or using embedded structure
+
+<br>
 
 ## Wednesday, 10/5/2022
 
