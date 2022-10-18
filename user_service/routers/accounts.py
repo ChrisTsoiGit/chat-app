@@ -60,6 +60,13 @@ async def get_token(
         }
 
 
+#get all users
+@router.get("/accounts", response_model = AccountIn)
+def get_accounts(accounts:AccountIn):
+    return accounts
+
+
+
 @router.post("/api/accounts", response_model=AccountStatus | HttpError)
 async def create_account(
     info: AccountIn,  #this is what should be in the body
