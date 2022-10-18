@@ -67,10 +67,10 @@ services:
 
   post-poller:
         build:
-            context: ./post_service/poll
-            dockerfile: ./Dockerfile.dev
+            context: ./post_service
+            dockerfile: ./Dockerfile.poller
         volumes:
-            - ./post_service/poll:/app
+            - ./post_service:/app
         depends_on:
             - post
             - mongo
