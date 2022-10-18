@@ -13,7 +13,13 @@
 
 ## Monday, 10/17/2022
 
-- finished LogInModal.js and LogOutModal.js (v.1.)
+- finished and tested the front-end components:
+  - [x] main page
+  - [x] signup
+  - [x] signin
+- Ah-ha! moment:
+  - [x] **_git config core.ignorecase false_** will make git ignore changes in case, but it will also impose git confusions when pulling data
+  - [x] run **_git config core.ignorecase true_** if it's case sensitive
 
 <br>
 
