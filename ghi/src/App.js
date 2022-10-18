@@ -55,7 +55,7 @@ function App() {
           <Route path="/users" element={<UserList />} />
           <Route path="/login" element={<LogInModal />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
     </BrowserRouter>
