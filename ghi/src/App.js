@@ -50,7 +50,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/users/new" element={<SignUpModal />} />
+          <Route path="/signup" element={<SignUpModal />} />
           <Route path="/login" element={<LogInModal />} />
           <Route path="/chat" element={<Chat />} />
         </Routes>

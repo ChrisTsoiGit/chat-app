@@ -67,7 +67,7 @@ function SignUpModal() {
               </div>
             </div>
             <div className="field">
-              <label className="label">First and last names</label>
+              <label className="label">Full name</label>
               <div className="control">
                 <input
                   required
