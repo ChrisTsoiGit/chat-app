@@ -1,3 +1,23 @@
+## October 13, 2022
+
+Today, I worked on:
+
+* Finsihed Authentication for login, logout, signup endpoints.
+
+Todoy, I finsihed writing a function for signup endpoint and tesing if the registration information can be sent to the database. 
+I solved the bug from yesterday and the registration information has successfully sent to the database.
+
+
+## October 12, 2022
+
+Today, I worked on:
+
+* Working on Authentication for login, register logout endpoints.
+
+Todoy, I finsihed writing a function for register endpoint and tesing if the registration information can be sent to the database. 
+While testing the endpoint, the registration information has successfully sent to the database, but there is an error saying wrong password and username.
+
+
 ## October 11, 2022
 
 Today, I worked on:
@@ -14,6 +34,14 @@ Today, I worked on:
 
 Todoy, I walked through the mongodb set in docker file. Read some docuements about mongodb.
 Set up a username and passward for mongodb and connect it.
+
+## October 6, 2022
+
+Today, I worked on:
+
+* Building models for endpoints. 
+
+Todoy, I kept building models with Echo. We have created one for user.
 
 
 ## October 4, 2022

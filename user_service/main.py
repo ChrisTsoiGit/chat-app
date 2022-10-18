@@ -1,11 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
-from routers import accounts, websocket
+from routers import accounts, websocket, auth
 
 app = FastAPI()
 app.include_router(accounts.router)
 app.include_router(websocket.router)
+app.include_router(auth.auth.router)
+
+# origins = [
+#     "http://localhost.tiangolo.com",
+#     "https://localhost.tiangolo.com",
+#     "http://localhost",
+#     "http://localhost:8080",
+# ]
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,15 +26,3 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# @app.get("/api/launch-details")
-# def launch_details():
-#     return {
-#         "launch_details": {
-#             "year": 2022,
-#             "month": 10,
-#             "day": "28",
-#             "hour": 19,
-#             "min": 0,
-#             "tz:": "PST"
-#         }
-#     }
