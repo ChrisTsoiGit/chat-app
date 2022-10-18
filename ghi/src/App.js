@@ -41,7 +41,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import SignUpModal from "./SignUpModal";
 import LogInModal from "./LogInModal";
-import Chat from "./chat.js";
+import Chat from "./Chat.js";
 import "./index.css";
 
 function App() {
