@@ -81,12 +81,12 @@ function SignUpModal() {
               </div>
             </div>
             <div className="field is-grouped">
-              <div className="control">
+              <div className="control" id="subBtn">
                 <button disabled={signUpLoading} className="button is-primary">
                   Submit
                 </button>
               </div>
-              <div className="control">
+              <div className="control" id="subBtn">
                 <button
                   type="button"
                   onClick={() => dispatch(showModal(null))}
