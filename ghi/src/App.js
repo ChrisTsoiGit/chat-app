@@ -40,7 +40,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import SignUpModal from "./SignUpModal";
-import LogInModal from "./LoginModal";
+import LogInModal from "./LogInModal";
 import Chat from "./chat.js";
 import "./index.css";
 
