@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import ErrorMessage from "./ErrorMessage";
+// import ErrorMessage from "./ErrorMessage";
 import { UserContext } from "../context/UserContext";
 
 const Login = () => {
@@ -63,7 +63,7 @@ const Login = () => {
             />
           </div>
         </div>
-        <ErrorMessage message={errorMessage} />
+        {/* <ErrorMessage message={errorMessage} /> */}
         <br />
         <button className="button is-primary" type="submit">
           Login

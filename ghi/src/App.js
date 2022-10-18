@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from "react";
-import Chat from './components/Chat.jsx';
-import Register from "./components/Register";
+import Chat from './components/Chat.js';
+// import Register from "./components/Register";
 import Login from "./components/Login";
 import { UserContext } from "./context/UserContext";
 
 import './index.css';
 
 const App = () => {
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const [token] = useContext(UserContext);
 
   const getWelcomeMessage = async () => {
@@ -18,14 +18,15 @@ const App = () => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch("/api/chat", requestOptions);
+    const response = await fetch("/api/accounts", requestOptions);
     const data = await response.json();
 
     if (!response.ok) {
       console.log("something messed up");
-    } else {
-      setMessage(data.message);
     }
+    //  else {
+    //   setMessage(data.message);
+    // }
   };
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const App = () => {
     <div className="column m-5 is-two-thirds">
       {!token ? (
         <div className="columns">
-          <Register /> <Login />
+           <Login />
         </div>
       ) : (
         <Chat />

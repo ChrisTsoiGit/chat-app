@@ -1,3 +1,7 @@
+## October 14th 2022
+Working with Chris on create login page on react, and tested the connection between front end and backend. Design the format of html and dig into redux.
+## October 13th 2022
+Create registration page on react.
 ## October 12th 2022
 I watched the video of how to create sign in login and logout page on fastapi. Design the .js in react for different webpages and create html for chatpage, loginpage and sign in page.
 
