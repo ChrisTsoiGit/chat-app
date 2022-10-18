@@ -1,4 +1,3 @@
-import React from "react";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogInMutation } from "./app/api";
@@ -8,7 +7,7 @@ import Notification from "./Notification";
 
 function LogInModal() {
   const dispatch = useDispatch();
-  const { show, username, password } = useSelector((state) => state.users);
+  const { show, username, password } = useSelector((state) => state.account);
   const modalClass = `modal ${show === LOG_IN_MODAL ? "is-active" : ""}`;
   const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
   const field = useCallback(
@@ -28,8 +27,8 @@ function LogInModal() {
           ) : null}
           <form method="POST" onSubmit={preventDefault(logIn, target)}>
             <div className="field">
-              <label className="label" htmlFor="email">
-                Email
+              <label className="label" htmlFor="username">
+                Username
               </label>
               <div className="control">
                 <input
@@ -38,8 +37,8 @@ function LogInModal() {
                   value={username}
                   name="username"
                   className="input"
-                  type="email"
-                  placeholder="you@example.com"
+                  type="username"
+                  placeholder="bala bala"
                 />
               </div>
             </div>

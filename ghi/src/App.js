@@ -38,12 +38,10 @@
 
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Nav from "./Nav";
-import SignUpModal from "./SignUpModal";
-import LogInModal from "./LogInModal";
-import UserList from "./UserList";
-import Chat from "./Chat.js";
 import MainPage from "./MainPage";
+import SignUpModal from "./SignUpModal";
+import LogInModal from "./LoginModal";
+import Chat from "./chat.js";
 import "./index.css";
 
 function App() {
@@ -51,11 +49,10 @@ function App() {
     <BrowserRouter>
       <div className="container">
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="/users/new" element={<SignUpModal />} />
-          <Route path="/users" element={<UserList />} />
           <Route path="/login" element={<LogInModal />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
     </BrowserRouter>
