@@ -7,7 +7,7 @@ database = client.Blog
 collection = database.blog
 
 async def fetch_a_blog_post(user):
-    document = await collection.find_one("user":user)
+    document = await collection.find_one({"user":user})
     return document
 
 async def fetch_all_blogs():

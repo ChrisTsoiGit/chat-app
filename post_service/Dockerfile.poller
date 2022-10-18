@@ -1,13 +1,17 @@
-# FROM python:3.10-bullseye
-# RUN python -m pip install --upgrade pip
-# WORKDIR /app
+FROM python:3.10-bullseye
+ENV PYTHONUNBUFFERED 1
+RUN python -m pip install --upgrade pip
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
+RUN chmod +x /wait
+WORKDIR /deps 
+COPY requirements.txt requirements.txt
+RUN python -m pip install -r requirements.txt
+WORKDIR /app
+CMD /wait && python poller.py
 
-# COPY poll/requirements.txt requirements.txt
-# COPY poll/poller.py poller.py
-# COPY manage.py manage.py
-# COPY events_app events_app
-# COPY events_project events_project
-# COPY common common
 
-# RUN pip install -r requirements.txt
-# CMD python manage.py migrate && python poller.py
+
+# COPY poller.py poller.py
+
+# CMD /wait && echo  "HERE HERE HERE POLLER " && pwd && ls -al
+
