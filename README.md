@@ -11,10 +11,22 @@ Vintage classic chatroom which bring you back to the old time where everyone can
 
 ## Design
 ![merging to main](/image/planning.png)
+
+ Docker Network
+
+![merging to main](/image/docker.png)
 - User can register on the registration page using username, email and password.
 - Pre registered can access the chatroom by using the sign up page.
 - Non-registered users is not allowed to access to the chatroom.
 - The chatroom can support multi logged in users chatting in the same room at the same time.
+
+  [API design](https://gitlab.com/chatapp12/chat-app/-/blob/main/docs/api%20design.md)
+
+  [data models](https://gitlab.com/chatapp12/chat-app/-/blob/main/docs/data%20model.md)
+
+  [ghi](https://gitlab.com/chatapp12/chat-app/-/blob/main/docs/ghi.md)
+
+
 
 ## Project Setup
 
