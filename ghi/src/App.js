@@ -43,10 +43,16 @@ import Chat from './chat.js';
 import SignUpModal from './SignUpModal';
 import './index.css';
 import LogInModal from './LoginModal';
+// import Login from './login';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap-utilities.min.css"
+import "bootstrap/dist/css/bootstrap-utilities.min.css.map"
+import Nav from './Nav';
 
 function App() {
   return (
     <BrowserRouter>
+    <Nav />
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />

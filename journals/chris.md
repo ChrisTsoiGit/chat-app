@@ -1,3 +1,12 @@
+## October 14, 2022
+
+Today, I worked on:
+
+* Added front-end Authentication for login, signup.
+
+Todoy, Echo and I used React Redux to build two components as signup, login for front-end. we had bugs by installing Redux incompletely, but James who is 
+one of the instructor helped us solved the bugs.
+
 ## October 13, 2022
 
 Today, I worked on:
