@@ -1,3 +1,15 @@
+## October 18, 2022
+
+Today, I worked on:
+
+* Added unit test for create_account, and keep adding CSS and bootstrap design to login, signup page.
+
+## October 17, 2022
+
+Today, I worked on:
+
+* Added CSS and bootstrap front-end login page.
+
 ## October 14, 2022
 
 Today, I worked on:
