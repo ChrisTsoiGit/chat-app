@@ -79,22 +79,16 @@ class Chat extends React.Component {
   render() {
     return (
       <>
-        <h1>WebSocket Chat</h1>
+        <h1>Chat Room</h1>
         <h2>Your ID: {this.state.clientId}</h2>
-        <form onSubmit={this.sendMessage}>
-            <input value={this.state.message}
-                   className="form-control"
-                   type="text"
-                   id="messageText"
-                   autoComplete="off"
-                   onChange={this.updateMessage}/>
-            <button disabled={!this.state.connected}
-                    className="btn btn-primary">
-              Send
-            </button>
-        </form>
-        <h2>Messages</h2>
-        <table className="table">
+
+        <h2>Messages</h2> 
+        <div className="container mt-4">
+        <div className="card mx-auto" style={{ background : '400 px' }}>
+          
+              
+        
+        <table className="table"  >
           <thead>
             <tr>
               <th>Client</th>
@@ -109,6 +103,23 @@ class Chat extends React.Component {
             ))}
           </tbody>
         </table>
+        </div>
+        </div>
+    
+
+  
+        <form onSubmit={this.sendMessage}>
+            <input value={this.state.message}
+                   className="form-control "
+                   type="text"
+                   id="messageText"
+                   autoComplete="off"
+                   onChange={this.updateMessage}/>
+            <button disabled={!this.state.connected}
+                    className="btn btn-primary">
+              Send
+            </button>
+        </form> 
       </>
     )
   }

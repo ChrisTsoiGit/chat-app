@@ -3,7 +3,7 @@ import { clearForm } from './accountSlice';
 
 
 export const apiSlice = createApi({
-  reducerPath: 'books',
+  reducerPath: 'accounts',
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_HOST,
     prepareHeaders: (headers, { getState }) => {
@@ -15,7 +15,7 @@ export const apiSlice = createApi({
       return headers;
     }
   }),
-  tagTypes: ['Account', 'Books', 'Token'],
+  tagTypes: ['Account', 'Token'],
   endpoints: builder => ({
     signUp: builder.mutation({
       query: data => ({
