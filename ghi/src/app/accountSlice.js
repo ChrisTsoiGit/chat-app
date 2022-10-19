@@ -5,7 +5,7 @@ const initialState = {
     username: '',
     password: '',
     full_name: '',
-}
+};
 
 export const accountSlice = createSlice({
     name: 'account',
