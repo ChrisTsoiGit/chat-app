@@ -1,6 +1,6 @@
 import { applyMiddleware } from '@reduxjs/toolkit';
 import React from 'react';
-import { useGetTokenQuery } from './app/api';
+import { useLazyGetTokenQuery } from './app/api';
 import { useEffect, useState } from 'react'
 
 
@@ -21,42 +21,51 @@ const Chat = () => {
   const [connected, setConnected] = useState(false)
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
-  const { data, error, isLoading } = useGetTokenQuery()
-  const token = data["access_token"]
-
-  const url = `ws://localhost:8000/chat`;
-  const fullurl = url + "?token=" + token
-  const socket = new WebSocket(fullurl);
-
-  
+  const [trigger] = useLazyGetTokenQuery()
+  const [socket, setSocket] = useState(null)
+  const [username, setUsername] = useState("")
 
   useEffect(()=>{
-    function fetchData() {
-      
+    async function fetchData() {
+      const tokenPromise = trigger().unwrap();
+      tokenPromise.then((data) => {
+        setUsername(data.account.username)
+        const token = data["access_token"];
+        const url = `ws://localhost:8000/chat`;
+        const fullurl = url + "?token=" + token;
+        const ws = new WebSocket(fullurl);
+        setSocket(ws)
+        console.log("this is the data", data)
+        return ws
 
-    socket.addEventListener('open', () => {
-      setConnected(true);
-      setLoading(false);
-    });
+      }).then((resp)=>{
+        console.log("this is the ws", resp)
+        resp.addEventListener('open', () => {
+          setConnected(true);
+          setLoading(false);
+        });
+    
+        resp.addEventListener('close', () => {
+          setConnected(false);
+          setLoading(false);
+        });
+    
+        resp.addEventListener('error', () => {
+          setConnected(false);
+          setLoading(false);
+        });
+    
+        resp.addEventListener('message', message => {
+          setMessages(
+            [
+              JSON.parse(message.data),
+              ...messages,
+            ],
+          );
+        });
+      })
 
-    socket.addEventListener('close', () => {
-      setConnected(false);
-      setLoading(false);
-    });
-
-    socket.addEventListener('error', () => {
-      setConnected(false);
-      setLoading(false);
-    });
-
-    socket.addEventListener('message', message => {
-      setMessages(
-        [
-          JSON.parse(message.data),
-          ...messages,
-        ],
-      );
-    });
+    
   }
   fetchData()
   },[]);
@@ -74,7 +83,7 @@ const Chat = () => {
   return (
       <>
         <h1>Chat Room</h1>
-        {/* <h2>Your ID: {state.clientId}</h2> */}
+        <h2>Your Username: {username}</h2>
 
         <h2>Messages</h2> 
         <div className="container mt-4">
@@ -109,7 +118,7 @@ const Chat = () => {
                   id="messageText"
                   autoComplete="off"
                   onChange={updateMessage}/>
-            <button disabled={!connected}
+            <button disabled={!sendMessage}
                     className="btn btn-primary">
               Send
             </button>

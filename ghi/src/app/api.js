@@ -83,8 +83,8 @@ export const apiSlice = createApi({
 
 
 export const {
-    useGetTokenQuery,
+    useSignUpMutation,
     useLogInMutation,
     useLogOutMutation,
-    useSignUpMutation,
+    useLazyGetTokenQuery,
 } = apiSlice;
