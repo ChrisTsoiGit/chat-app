@@ -45,9 +45,9 @@ import './index.css';
 import LogInModal from './LoginModal';
 // import Login from './login';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap-utilities.min.css"
-import "bootstrap/dist/css/bootstrap-utilities.min.css.map"
 import Nav from './Nav';
+
+
 
 function App() {
   return (

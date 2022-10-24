@@ -1,4 +1,7 @@
+import { applyMiddleware } from '@reduxjs/toolkit';
 import React from 'react';
+import { useGetTokenQuery } from './app/api';
+import { useEffect, useState } from 'react'
 
 
 function MessageRow(props) {
@@ -12,75 +15,66 @@ function MessageRow(props) {
   )
 }
 
+const Chat = () => {
 
-class Chat extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-      clientId: Number.parseInt(Math.random() * 10000000),
-      connected: false,
-      message: '',
-    };
-    this.sendMessage = this.sendMessage.bind(this);
-    this.updateMessage = this.updateMessage.bind(this);
-  }
+  const [messages, setMessages] = useState([])
+  const [connected, setConnected] = useState(false)
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(true)
+  const { data, error, isLoading } = useGetTokenQuery()
+  const token = data["access_token"]
 
-  connect() {
-    if (this.loading && !this.state.connected) {
-      return;
-    }
-    this.loading = true;
-    // Should be an environment variable in the future
-    const url = `ws://localhost:8000/chat/${this.state.clientId}`;
-    this.socket = new WebSocket(url);
-    this.socket.addEventListener('open', () => {
-      this.setState({ connected: true });
-      this.loading = false;
+  const url = `ws://localhost:8000/chat`;
+  const fullurl = url + "?token=" + token
+  const socket = new WebSocket(fullurl);
+
+  
+
+  useEffect(()=>{
+    function fetchData() {
+      
+
+    socket.addEventListener('open', () => {
+      setConnected(true);
+      setLoading(false);
     });
-    this.socket.addEventListener('close', () => {
-      this.setState({ connected: false });
-      this.loading = false;
-      setTimeout(() => {
-        this.connect();
-      }, 1000);
+
+    socket.addEventListener('close', () => {
+      setConnected(false);
+      setLoading(false);
     });
-    this.socket.addEventListener('error', () => {
-      this.setState({ connected: false });
-      this.loading = false;
-      setTimeout(() => {
-        this.connect();
-      }, 1000);
+
+    socket.addEventListener('error', () => {
+      setConnected(false);
+      setLoading(false);
     });
-    this.socket.addEventListener('message', message => {
-      this.setState({
-        messages: [
+
+    socket.addEventListener('message', message => {
+      setMessages(
+        [
           JSON.parse(message.data),
-          ...this.state.messages,
+          ...messages,
         ],
-      });
+      );
     });
   }
+  fetchData()
+  },[]);
 
-  componentDidMount() {
-    this.connect();
+
+  const sendMessage = () =>{
+    socket.send(message);
+    setMessage('');
   }
 
-  sendMessage(e) {
-    e.preventDefault();
-    this.socket.send(this.state.message);
-    this.setState({ message: '' });
+  const updateMessage = (e) => {
+    setMessage(e.target.value);
   }
 
-  updateMessage(e) {
-    this.setState({ message: e.target.value });
-  }
-
-  render() {
-    return (
+  return (
       <>
         <h1>Chat Room</h1>
-        <h2>Your ID: {this.state.clientId}</h2>
+        {/* <h2>Your ID: {state.clientId}</h2> */}
 
         <h2>Messages</h2> 
         <div className="container mt-4">
@@ -91,14 +85,14 @@ class Chat extends React.Component {
         <table className="table"  >
           <thead>
             <tr>
-              <th>Client</th>
+              <th>Username</th>
               <th>Date/Time</th>
               <th>Message</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.messages.map(message => (
-              <MessageRow key={message.clientId + message.timestamp}
+            {messages.map(message => (
+              <MessageRow key={message.username + message.timestamp}
                           message={message} />
             ))}
           </tbody>
@@ -108,14 +102,14 @@ class Chat extends React.Component {
     
 
   
-        <form onSubmit={this.sendMessage}>
-            <input value={this.state.message}
-                   className="form-control "
-                   type="text"
-                   id="messageText"
-                   autoComplete="off"
-                   onChange={this.updateMessage}/>
-            <button disabled={!this.state.connected}
+        <form onSubmit={sendMessage}>
+            <input value={message}
+                  className="form-control "
+                  type="text"
+                  id="messageText"
+                  autoComplete="off"
+                  onChange={updateMessage}/>
+            <button disabled={!connected}
                     className="btn btn-primary">
               Send
             </button>
@@ -123,6 +117,6 @@ class Chat extends React.Component {
       </>
     )
   }
-}
+
 
 export default Chat;

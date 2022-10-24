@@ -73,7 +73,7 @@ export const apiSlice = createApi({
     }),
     getToken: builder.query({
       query: () => ({
-        url: '/token',
+        url: '/api/token',
         credentials: 'include',
       }),
       providesTags: ['Token'],

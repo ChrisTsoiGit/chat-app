@@ -3,14 +3,21 @@ import { NavLink } from 'react-router-dom'
 
 function Nav() {
   return (
-    <div className="pos-f-t">
-  <nav className="navbar navbar-dark bg-dark">
-  <li><a className="navbar-brand" href="#">Login</a></li>
-  <li><a className="navbar-brand" href="#">SignUp</a></li>
-  <a className="navbar-brand" href="#">Logout</a>
-</nav>
+  <nav className="sticky top-0 z-50  flex items-center justify-center bg-gray-100 flex-wrap w-screen shadow-xl text-black">
+    <div className="flex items-center flex-shrink-0 mr-6">
+    
 
-</div>
+
+
+    </div>
+       {/* <li><a className="nav-item" href="#">Login</a></li>
+   <li><a className="navbar-brand" href="#">SignUp</a></li>
+  <a className="navbar-brand" href="#">Logout</a> */}
+</nav> 
+ 
+ 
+
+
     // <nav className="navbar navbar-expand-lg navbar-dark bg-dark" >
     //   <div className="container-fluid">
     //     <NavLink className="navbar-brand" to="/">

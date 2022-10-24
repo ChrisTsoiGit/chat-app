@@ -9,7 +9,8 @@ function LogInModal() {
   const dispatch = useDispatch();
   const { username, password } = useSelector(state => state.account);
   // const modalClass = `modal ${show === LOG_IN_MODAL ? 'is-active' : ''}`;
-  const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
+  const [logIn, { error, isLoading: logInLoading, data }] = useLogInMutation();
+  console.log(data)
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
