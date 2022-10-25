@@ -1,4 +1,4 @@
-import { applyMiddleware } from '@reduxjs/toolkit';
+import { applyMiddleware, current } from '@reduxjs/toolkit';
 import React from 'react';
 import { useLazyGetTokenQuery } from './app/api';
 import { useEffect, useState } from 'react'
@@ -35,7 +35,6 @@ const Chat = () => {
         const fullurl = url + "?token=" + token;
         const ws = new WebSocket(fullurl);
         setSocket(ws)
-        console.log("this is the data", data)
         return ws
 
       }).then((resp)=>{
@@ -56,13 +55,12 @@ const Chat = () => {
           setLoading(false);
         });
     
+
         resp.addEventListener('message', message => {
-          setMessages(
-            [
-              JSON.parse(message.data),
-              ...messages,
-            ],
+          setMessages(current => 
+            [...current, JSON.parse(message.data)]
           );
+          
         });
       })
 

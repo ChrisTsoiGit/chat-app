@@ -17,17 +17,17 @@ function LogInModal() {
     [dispatch],
   );
 
-  let nevigate = useNavigate();
-  const routeChange = () =>{
-    let path = `/chat`;
-    nevigate(path);
-  }
+  // let nevigate = useNavigate();
+  // const routeChange = () =>{
+  //   let path = `/chat`;
+  //   nevigate(path);
+  // }
 
-  let signup = useNavigate();
-  const signupRoute = () =>{
-    let path = `/signup`;
-    signup(path);
-  }
+  // let signup = useNavigate();
+  // const signupRoute = () =>{
+  //   let path = `/signup`;
+  //   signup(path);
+  // }
 
 
 
@@ -58,7 +58,7 @@ function LogInModal() {
             </div>
             <div className="field is-grouped">
               <div className="control p-2">
-                <button disabled={logInLoading} onClick={routeChange} className="btn btn-outline-warning btn-lg px-5">Submit</button>
+                <button disabled={logInLoading}  className="btn btn-outline-warning btn-lg px-5">Submit</button>
               </div>
               <div className="control p-2">
                 <button
@@ -68,7 +68,7 @@ function LogInModal() {
               </div>
 
               <div>
-              <button onClick={signupRoute} className="btn btn-outline-warning btn-lg btn-sm">Sign Up</button>
+              <button className="btn btn-outline-warning btn-lg btn-sm">Sign Up</button>
               
             </div>
       

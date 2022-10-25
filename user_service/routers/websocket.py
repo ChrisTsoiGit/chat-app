@@ -36,9 +36,9 @@ class ConnectionManager:
         token_data = jwt.decode(
             websocket.query_params['token'],
             os.environ["SIGNING_KEY"],
-            algorithm="HS256")
-        print(token_data)
-        username = token_data["username"]
+            algorithms=["HS256"])
+        print("this is token data",token_data)
+        username = token_data["account"]["username"]
         self.active_connections[username] = websocket
         await self.send_personal_message(
             "Welcome!",
@@ -63,6 +63,7 @@ class ConnectionManager:
             "message_id": self.next_message_id(),
         })
         await websocket.send_text(payload)
+        # await self.active_connections[user].send_text(payload) change this for personal mess
 
     async def broadcast(self, message: str, username: str):
         payload = json.dumps({
@@ -72,7 +73,7 @@ class ConnectionManager:
             "message_id": self.next_message_id(),
         })
         print('active connections:', len(self.active_connections))
-        for connection in self.active_connections:
+        for connection in self.active_connections.values():
             await connection.send_text(payload)
 
     def next_message_id(self):
@@ -94,6 +95,7 @@ async def websocket_endpoint(
             message = await websocket.receive_text()
             await manager.broadcast(message, username)
     except WebSocketDisconnect:
+        print("Disconnect", username )
         manager.disconnect(websocket, username)
         await manager.broadcast("Disconnected", username)
 
