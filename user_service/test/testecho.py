@@ -2,6 +2,7 @@ from queries.accounts import AccountOut
 from main import app
 from fastapi.testclient import TestClient
 from routers.auth import auth
+import pytest
 
 client = TestClient(app)
 
