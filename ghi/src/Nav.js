@@ -4,9 +4,9 @@ function Nav() {
   return (
     <div className="pos-f-t">
   <nav className="navbar navbar-dark bg-dark">
-  <li><a className="navbar-brand" href="#">Login</a></li>
-  <li><a className="navbar-brand" href="#">SignUp</a></li>
-  <a className="navbar-brand" href="#">Logout</a>
+  <li><a className="navbar-brand" href="/">Login</a></li>
+  <li><a className="navbar-brand" href="/">SignUp</a></li>
+  <a className="navbar-brand" href="/">Logout</a>
 </nav>
 
 </div>
