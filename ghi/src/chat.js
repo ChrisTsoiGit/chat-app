@@ -8,7 +8,7 @@ function MessageRow(props) {
   const when = new Date(props.message.timestamp);
   return (
     <tr>
-      {/* <td>{props.message.client_id}</td> */}
+      <td>{props.message.username}</td>
       <td>{when.toLocaleString()}</td>
       <td>{props.message.content}</td>
     </tr>

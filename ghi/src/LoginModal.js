@@ -11,7 +11,6 @@ function LogInModal() {
   const { username, password } = useSelector(state => state.account);
   // const modalClass = `modal ${show === LOG_IN_MODAL ? 'is-active' : ''}`;
   const [logIn, { error, isLoading: logInLoading, data }] = useLogInMutation();
-  console.log(data)
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
@@ -23,11 +22,11 @@ function LogInModal() {
   //   nevigate(path);
   // }
 
-  // let signup = useNavigate();
-  // const signupRoute = () =>{
-  //   let path = `/signup`;
-  //   signup(path);
-  // }
+  let signup = useNavigate();
+  const signupRoute = () =>{
+    let path = `/signup`;
+    signup(path);
+  }
 
 
 
@@ -58,19 +57,18 @@ function LogInModal() {
             </div>
             <div className="field is-grouped">
               <div className="control p-2">
-                <button disabled={logInLoading}  className="btn btn-outline-warning btn-lg px-5">Submit</button>
+                <button disabled={logInLoading}  className="btn btn-outline-warning btn-lg px-5">Log In</button>
               </div>
-              <div className="control p-2">
+              {/* <div className="control p-2">
                 <button
                   type="button"
                   onClick={() => dispatch(showModal(null))}
                   className="btn btn-outline-warning btn-lg px-5">Cancel</button>
-              </div>
+              </div> */}
 
-              <div>
-              <button className="btn btn-outline-warning btn-lg btn-sm">Sign Up</button>
-              
-            </div>
+              <div className="control p-2">
+                <button className="btn btn-outline-warning btn-lg px-5">Sign Up</button>
+              </div>
       
             </div>
           </form>

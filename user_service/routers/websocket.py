@@ -37,7 +37,7 @@ class ConnectionManager:
             websocket.query_params['token'],
             os.environ["SIGNING_KEY"],
             algorithms=["HS256"])
-        print("this is token data",token_data)
+        
         username = token_data["account"]["username"]
         self.active_connections[username] = websocket
         await self.send_personal_message(
