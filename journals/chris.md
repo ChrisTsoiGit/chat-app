@@ -1,3 +1,9 @@
+## October 24, 2022
+
+Today, I worked on:
+
+* Successfully get the username from the token and display on the frontend. Edit the CSS for the Nav and footer.
+
 ## October 21, 2022
 
 Today, I worked on:
