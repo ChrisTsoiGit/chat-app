@@ -96,6 +96,6 @@ async def websocket_endpoint(
             await manager.broadcast(message, username)
     except WebSocketDisconnect:
         print("Disconnect", username )
-        manager.disconnect(websocket, username)
+        manager.disconnect(username)
         await manager.broadcast("Disconnected", username)
 

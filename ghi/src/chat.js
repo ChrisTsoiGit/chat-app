@@ -1,4 +1,3 @@
-import { applyMiddleware, current } from '@reduxjs/toolkit';
 import React from 'react';
 import { useLazyGetTokenQuery } from './app/api';
 import { useEffect, useState } from 'react'

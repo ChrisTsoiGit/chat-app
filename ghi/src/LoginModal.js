@@ -16,17 +16,27 @@ function LogInModal() {
     [dispatch],
   );
 
-  // let nevigate = useNavigate();
-  // const routeChange = () =>{
-  //   let path = `/chat`;
-  //   nevigate(path);
+  let navigate = useNavigate();
+  const routeChange = (e) =>{
+    console.log("this is e", new FormData(e.target))
+    e.preventDefault()
+    console.log("this is routchange")
+    logIn(e.target)
+    let path = `/chat`;
+    navigate(path);
+  }
+
+  // const handleSumbit = () =>{
+  //    preventDefault(logIn, target)
   // }
 
-  let signup = useNavigate();
-  const signupRoute = () =>{
-    let path = `/signup`;
-    signup(path);
-  }
+  // }
+
+  // let signup = useNavigate();
+  // const signupRoute = () =>{
+  //   let path = `/signup`;
+  //   signup(path);
+  // }
 
 
 
@@ -42,7 +52,8 @@ function LogInModal() {
           <h3 className = "fw-bold mb-4 text-uppercase">Log In</h3>
           
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          <form method="POST" onSubmit={preventDefault(logIn, target)}>
+          {/* <form method="POST" onSubmit={() => {preventDefault(logIn, target); routeChange();}}> */}
+          <form method="POST" onSubmit={routeChange}>
             <div className="field">
               {/* <label className="label" htmlFor="username">Username</label> */}
               <div className="form-outline form-white mb-4">
@@ -78,7 +89,6 @@ function LogInModal() {
         </div>
         </div>
       </div>
-     
     
   );
 }
