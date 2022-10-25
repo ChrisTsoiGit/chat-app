@@ -8,7 +8,7 @@ function MessageRow(props) {
   const when = new Date(props.message.timestamp);
   return (
     <tr>
-      <td>{props.message.client_id}</td>
+      {/* <td>{props.message.client_id}</td> */}
       <td>{when.toLocaleString()}</td>
       <td>{props.message.content}</td>
     </tr>
@@ -46,6 +46,7 @@ const Chat = () => {
         });
     
         resp.addEventListener('close', () => {
+          console.log("is closing")
           setConnected(false);
           setLoading(false);
         });
@@ -71,7 +72,8 @@ const Chat = () => {
   },[]);
 
 
-  const sendMessage = () =>{
+  const sendMessage = (e) =>{
+    e.preventDefault();
     socket.send(message);
     setMessage('');
   }
@@ -88,8 +90,6 @@ const Chat = () => {
         <h2>Messages</h2> 
         <div className="container mt-4">
         <div className="card mx-auto" style={{ background : '400 px' }}>
-          
-              
         
         <table className="table"  >
           <thead>
@@ -108,9 +108,7 @@ const Chat = () => {
         </table>
         </div>
         </div>
-    
 
-  
         <form onSubmit={sendMessage}>
             <input value={message}
                   className="form-control "

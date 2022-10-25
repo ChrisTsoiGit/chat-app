@@ -4,6 +4,7 @@ import { useLogInMutation } from './app/api';
 import { eventTargetSelector as target, preventDefault } from './app/utils';
 import { showModal, updateField } from './app/accountSlice';
 import Notification from './Notification';
+import { useNavigate } from "react-router-dom";
 
 function LogInModal() {
   const dispatch = useDispatch();
@@ -15,6 +16,20 @@ function LogInModal() {
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
   );
+
+  let nevigate = useNavigate();
+  const routeChange = () =>{
+    let path = `/chat`;
+    nevigate(path);
+  }
+
+  let signup = useNavigate();
+  const signupRoute = () =>{
+    let path = `/signup`;
+    signup(path);
+  }
+
+
 
   return (
     
@@ -43,7 +58,7 @@ function LogInModal() {
             </div>
             <div className="field is-grouped">
               <div className="control p-2">
-                <button disabled={logInLoading} className="btn btn-outline-warning btn-lg px-5">Submit</button>
+                <button disabled={logInLoading} onClick={routeChange} className="btn btn-outline-warning btn-lg px-5">Submit</button>
               </div>
               <div className="control p-2">
                 <button
@@ -53,8 +68,8 @@ function LogInModal() {
               </div>
 
               <div>
-              <p className="mb-4 ">Don't have an account? <a href="/signup" className="btn btn-outline-warning btn-lg btn-sm">Sign Up</a>
-              </p>
+              <button onClick={signupRoute} className="btn btn-outline-warning btn-lg btn-sm">Sign Up</button>
+              
             </div>
       
             </div>
