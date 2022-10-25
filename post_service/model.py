@@ -1,13 +1,14 @@
 from fastapi import FastAPI, Path
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, HttpUrl, EmailStr
 from typing import Optional
 
 app = FastAPI()
 
 class UserVO(BaseModel):
-    username: str
-    full_name: str | None = None
-    profile_picture: Optional[str]
+    id: str
+    username : str
+    email: EmailStr
+    full_name: str
 
 class BlogPost(BaseModel):
     user: UserVO
@@ -23,5 +24,3 @@ class BlogComment(BaseModel):
     user: UserVO
     comment: str
     time: int
-
-
