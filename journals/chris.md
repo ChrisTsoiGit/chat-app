@@ -5,6 +5,7 @@ Today, I worked on:
 Issues: 
 - Websocket sometime will close the connection without changing anything. 
 - Having issue on the submit button on the signup front-end, it doesn't re-direct after clicking the submit button.
+
 Work completed:
 - Added re-direct feature to the Nav bar buttons.
 - Fixed websocket issues, we found that we need to refreash our page everytime when I login. Otherwise, the connection will not be stable.
