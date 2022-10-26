@@ -17,10 +17,10 @@ function SignUpModal() {
   );
 
   let navigate = useNavigate();
-  const routeChange = (e) =>{
+  const routeChange = async (e) =>{
     // console.log("this is e", new FormData(e.target))
     e.preventDefault()
-    signUp(e.target)
+    await signUp({username, password, email, full_name})
     let path = `/login`;
     navigate(path);
   }
@@ -35,8 +35,8 @@ function SignUpModal() {
         <div className="p-3 mb-2 bg-secondary ">
           <h3 className = "fw-bold mb-4 text-uppercase">Sign Up</h3>
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          <form method="POST" onSubmit={preventDefault(signUp, () => ({ username, password, email, full_name }))}>
-          {/* <form method="POST" onSubmit={routeChange}> */}
+          {/* <form method="POST" onSubmit={preventDefault(signUp, () => ({ username, password, email, full_name }))}> */}
+          <form method="POST" onSubmit={routeChange}>
             <div className="field">
               <div className="form-outline form-white mb-4">
                 <input required onChange={field} value={username} name="username" className="form-control form-control-lg" type="username" placeholder="Username" />

@@ -18,10 +18,10 @@ function LogInModal() {
   );
 
   let navigate = useNavigate();
-  const routeChange = (e) =>{
+  const routeChange = async (e) =>{
     // console.log("this is e", new FormData(e.target))
     e.preventDefault()
-    logIn(e.target)
+    await logIn(e.target)
     let path = `/chat`;
     navigate(path);
   }
@@ -41,8 +41,6 @@ function LogInModal() {
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-12 col-md-8 col-lg-6 col-xl-5">
         <div className="card-body p-5 text-center">
-          
-          
         <div className="p-3 mb-2 bg-secondary ">
           <h3 className = "fw-bold mb-4 text-uppercase">Log In</h3>
           

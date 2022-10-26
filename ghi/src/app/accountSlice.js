@@ -4,6 +4,7 @@ const initialState = {
     show: null,
     username: '',
     password: '',
+    email: '',
     full_name: '',
 };
 

@@ -30,6 +30,7 @@ const Chat = () => {
       tokenPromise.then((data) => {
         setUsername(data.account.username)
         const token = data["access_token"];
+        console.log("this is token", token)
         const url = `ws://localhost:8000/chat`;
         const fullurl = url + "?token=" + token;
         const ws = new WebSocket(fullurl);
