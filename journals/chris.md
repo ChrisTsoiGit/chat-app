@@ -1,3 +1,39 @@
+## October 24, 2022
+
+Today, I worked on:
+
+* Successfully get the username from the token and display on the frontend. Edit the CSS for the Nav and footer.
+
+## October 21, 2022
+
+Today, I worked on:
+
+* Meet with Andrew to get the token. Also, I need to rewrite codes from class to function so I can use the token.
+
+## October 20, 2022
+
+Today, I worked on:
+
+* Still working on token, so we can access the username from the token to display the users who login.
+
+## October 19, 2022
+
+Today, I worked on:
+
+* Edit websocket file, trying to access the username from the token.
+
+## October 18, 2022
+
+Today, I worked on:
+
+* Added unit test for create_account, and keep adding CSS and bootstrap design to login, signup page.
+
+## October 17, 2022
+
+Today, I worked on:
+
+* Added CSS and bootstrap front-end login page.
+
 ## October 14, 2022
 
 Today, I worked on:
