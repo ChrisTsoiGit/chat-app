@@ -9,6 +9,34 @@
 
 ---
 
+br>
+
+## Tuesday, 10/25/2022
+
+- team work (with Andrew's help):
+  - [x] multi-person chat room enabled with synced messages
+  - [x] reroute to the chat room after login
+- worked on logout feature
+
+<br>
+
+## Monday, 10/24/2022
+
+- team work (with Andrew's help):
+  - [x] rewrote funciton-based chat.js to get username
+  - [x] sync chat messages with different users logged in
+- Ah-ha! moment: after a user login, the user token is stored in the cookie. If we do not want to get the token refreshed after another user login, a short cut is to run in incognito mode.
+
+<br>
+
+## Friday off, 10/21/2022
+
+<br>
+
+## Thursday, 10/20/2022
+
+- reference search: how to rewirte a function-based chat.js
+
 <br>
 
 ## Friday, 10/19/2022
