@@ -35,6 +35,13 @@ function Nav() {
         let path = `/`;
         homeNavigate(path);
       }
+
+      let chatNavigate = useNavigate();
+      const chatChange = (e) =>{
+        e.preventDefault()
+        let path = `/chat`;
+        chatNavigate(path);
+      }
   
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">     
@@ -48,9 +55,10 @@ function Nav() {
       <button className="btn btn-outline-warning " onClick={signupChange} type="button">SignUp </button>
       </div>
       <div className="navbar-brand">
-      <button className="btn btn-outline-warning" onClick={LogoutChange} type="button">  
-            Logout </button>
-            
+      <button className="btn btn-outline-warning" onClick={LogoutChange} type="button">  Logout </button>
+      </div>
+      <div className="navbar-brand">
+      <button className="btn btn-outline-warning" onClick={chatChange} type="button">  ChatRoom </button>
       </div>
     </nav>
 
