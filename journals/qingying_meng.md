@@ -9,14 +9,19 @@
 
 ---
 
-br>
+<br>
+
+## Wendesday, 10/26/2022
+
+<br>
 
 ## Tuesday, 10/25/2022
 
 - team work (with Andrew's help):
   - [x] multi-person chat room enabled with synced messages
   - [x] reroute to the chat room after login
-- worked on logout feature
+- worked on logout (delte the token) and reroute feature
+- Ah-ha! moment: Websocket will close the connection sometimes. For unstable websocket issue, we need to refresh the page after login. Otherwise connection will not be stable.
 
 <br>
 
@@ -39,7 +44,7 @@ br>
 
 <br>
 
-## Friday, 10/19/2022
+## Wendesday, 10/19/2022
 
 - worked on unit test
 - worked on displaying username of the logged-in user (with Andrew's help)
