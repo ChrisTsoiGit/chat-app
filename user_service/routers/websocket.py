@@ -2,10 +2,15 @@ from fastapi import (
     APIRouter,
     WebSocket,
     WebSocketDisconnect,
+    Cookie,
 )
+import os
+from jose import jwt
 from typing import List
 import json
 from datetime import datetime, timezone
+from routers.accounts import AccountToken
+from routers.auth import auth
 
 router = APIRouter()
 
@@ -13,51 +18,62 @@ router = APIRouter()
 def timestamp():
     return datetime.now(timezone.utc).isoformat()
 
+# async def get_current_active_user(current_user: AccountToken):
+#     if current_user.disabled:
+#         raise HTTPException(status_code=400, detail="Inactive user")
+#     return current_user
 
 class ConnectionManager:
     def __init__(self):
-        self.active_connections: List[WebSocket] = []
+        self.active_connections = dict()
         self.current_message_id = 0
 
     async def connect(
         self,
         websocket: WebSocket,
-        client_id: int,
     ):
         await websocket.accept()
-        self.active_connections.append(websocket)
+        token_data = jwt.decode(
+            websocket.query_params['token'],
+            os.environ["SIGNING_KEY"],
+            algorithms=["HS256"])
+        
+        username = token_data["account"]["username"]
+        self.active_connections[username] = websocket
         await self.send_personal_message(
             "Welcome!",
-            client_id,
+            username,
             websocket,
         )
+        return username
 
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
+    def disconnect(self, username: str):
+        del self.active_connections[username] 
 
     async def send_personal_message(
         self,
         message: str,
-        client_id: int,
+        username: str,
         websocket: WebSocket,
     ):
         payload = json.dumps({
-            "client_id": client_id,
+            "username": username,
             "content": message,
             "timestamp": timestamp(),
             "message_id": self.next_message_id(),
         })
         await websocket.send_text(payload)
+        # await self.active_connections[user].send_text(payload) change this for personal mess
 
-    async def broadcast(self, message: str, client_id: int):
+    async def broadcast(self, message: str, username: str):
         payload = json.dumps({
-            "client_id": client_id,
+            "username": username,
             "content": message,
             "timestamp": timestamp(),
             "message_id": self.next_message_id(),
         })
         print('active connections:', len(self.active_connections))
-        for connection in self.active_connections:
+        for connection in self.active_connections.values():
             await connection.send_text(payload)
 
     def next_message_id(self):
@@ -68,16 +84,18 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 
-@router.websocket("/chat/{client_id}")
+@router.websocket("/chat")
 async def websocket_endpoint(
-    websocket: WebSocket,
-    client_id: int,
+    websocket: WebSocket
 ):
-    await manager.connect(websocket, client_id)
+
+    username = await manager.connect(websocket)
     try:
         while True:
             message = await websocket.receive_text()
-            await manager.broadcast(message, client_id)
+            await manager.broadcast(message, username)
     except WebSocketDisconnect:
-        manager.disconnect(websocket)
-        await manager.broadcast("Disconnected", client_id)
+        print("Disconnect", username )
+        manager.disconnect(username)
+        await manager.broadcast("Disconnected", username)
+

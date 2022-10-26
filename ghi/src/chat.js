@@ -1,128 +1,129 @@
 import React from 'react';
+import { useLazyGetTokenQuery } from './app/api';
+import { useEffect, useState } from 'react'
 
 
 function MessageRow(props) {
   const when = new Date(props.message.timestamp);
   return (
     <tr>
-      <td>{props.message.client_id}</td>
+      <td>{props.message.username}</td>
       <td>{when.toLocaleString()}</td>
       <td>{props.message.content}</td>
     </tr>
   )
 }
 
+const Chat = () => {
 
-class Chat extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-      clientId: Number.parseInt(Math.random() * 10000000),
-      connected: false,
-      message: '',
-    };
-    this.sendMessage = this.sendMessage.bind(this);
-    this.updateMessage = this.updateMessage.bind(this);
+  const [messages, setMessages] = useState([])
+  const [connected, setConnected] = useState(false)
+  const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [trigger] = useLazyGetTokenQuery()
+  const [socket, setSocket] = useState(null)
+  const [username, setUsername] = useState("")
+
+  useEffect(()=>{
+    async function fetchData() {
+      const tokenPromise = trigger().unwrap();
+      tokenPromise.then((data) => {
+        setUsername(data.account.username)
+        const token = data["access_token"];
+        const url = `ws://localhost:8000/chat`;
+        const fullurl = url + "?token=" + token;
+        const ws = new WebSocket(fullurl);
+        setSocket(ws)
+        return ws
+
+      }).then((resp)=>{
+        console.log("this is the ws", resp)
+        resp.addEventListener('open', () => {
+          setConnected(true);
+          setLoading(false);
+        });
+    
+        resp.addEventListener('close', () => {
+          console.log("is closing")
+          setConnected(false);
+          setLoading(false);
+        });
+    
+        resp.addEventListener('error', () => {
+          setConnected(false);
+          setLoading(false);
+        });
+    
+
+        resp.addEventListener('message', message => {
+          setMessages(current => 
+            [...current, JSON.parse(message.data)]
+          );
+          
+        });
+      })
+
+    
   }
+  fetchData()
+  },[]);
 
-  connect() {
-    if (this.loading && !this.state.connected) {
-      return;
-    }
-    this.loading = true;
-    // Should be an environment variable in the future
-    const url = `ws://localhost:8000/chat/${this.state.clientId}`;
-    this.socket = new WebSocket(url);
-    this.socket.addEventListener('open', () => {
-      this.setState({ connected: true });
-      this.loading = false;
-    });
-    this.socket.addEventListener('close', () => {
-      this.setState({ connected: false });
-      this.loading = false;
-      setTimeout(() => {
-        this.connect();
-      }, 1000);
-    });
-    this.socket.addEventListener('error', () => {
-      this.setState({ connected: false });
-      this.loading = false;
-      setTimeout(() => {
-        this.connect();
-      }, 1000);
-    });
-    this.socket.addEventListener('message', message => {
-      this.setState({
-        messages: [
-          JSON.parse(message.data),
-          ...this.state.messages,
-        ],
-      });
-    });
-  }
 
-  componentDidMount() {
-    this.connect();
-  }
-
-  sendMessage(e) {
+  const sendMessage = (e) =>{
     e.preventDefault();
-    this.socket.send(this.state.message);
-    this.setState({ message: '' });
+    socket.send(message);
+    setMessage('');
   }
 
-  updateMessage(e) {
-    this.setState({ message: e.target.value });
+  const updateMessage = (e) => {
+    setMessage(e.target.value);
   }
 
-  render() {
-    return (
+  return (
       <>
         <h1>Chat Room</h1>
-        <h2>Your ID: {this.state.clientId}</h2>
+        <h2>Your Username: {username}</h2>
 
         <h2>Messages</h2> 
         <div className="container mt-4">
         <div className="card mx-auto" style={{ background : '400 px' }}>
-          
-              
         
         <table className="table"  >
           <thead>
             <tr>
-              <th>Client</th>
+              <th>Username</th>
               <th>Date/Time</th>
               <th>Message</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.messages.map(message => (
-              <MessageRow key={message.clientId + message.timestamp}
+            {messages.map(message => (
+              <MessageRow key={message.username + message.timestamp}
                           message={message} />
             ))}
           </tbody>
         </table>
         </div>
         </div>
-    
 
-  
-        <form onSubmit={this.sendMessage}>
-            <input value={this.state.message}
-                   className="form-control "
-                   type="text"
-                   id="messageText"
-                   autoComplete="off"
-                   onChange={this.updateMessage}/>
-            <button disabled={!this.state.connected}
-                    className="btn btn-primary">
+        <form onSubmit={sendMessage}>
+            <input value={message}
+                  className="form-control "
+                  aria-label="Large"
+                  type="text"
+                  id="messageText"
+                  autoComplete="off"
+                  onChange={updateMessage}/>
+          
+            <button disabled={!sendMessage}
+                    className="btn btn-outline-warning">
               Send
             </button>
+           
         </form> 
       </>
     )
   }
-}
+
 
 export default Chat;

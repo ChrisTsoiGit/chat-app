@@ -58,6 +58,8 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+    else: 
+        raise Exception("No cookie in request")
 
 
 @router.post("/api/accounts", response_model=AccountStatus | HttpError)

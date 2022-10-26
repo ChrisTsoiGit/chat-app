@@ -1,9 +1,11 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogInMutation } from './app/api';
-import { eventTargetSelector as target, preventDefault } from './app/utils';
-import { showModal, updateField } from './app/accountSlice';
+// import { eventTargetSelector as target, preventDefault } from './app/utils';
+// import { showModal, updateField } from './app/accountSlice';
+import { updateField } from './app/accountSlice';
 import Notification from './Notification';
+import { useNavigate } from "react-router-dom";
 
 function LogInModal() {
   const dispatch = useDispatch();
@@ -14,6 +16,29 @@ function LogInModal() {
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
   );
+
+  let navigate = useNavigate();
+  const routeChange = (e) =>{
+    // console.log("this is e", new FormData(e.target))
+    e.preventDefault()
+    logIn(e.target)
+    let path = `/chat`;
+    navigate(path);
+  }
+
+  // const handleSumbit = () =>{
+  //    preventDefault(logIn, target)
+  // }
+
+  // }
+
+  // let signup = useNavigate();
+  // const signupRoute = () =>{
+  //   let path = `/signup`;
+  //   signup(path);
+  // }
+
+
 
   return (
     
@@ -27,7 +52,8 @@ function LogInModal() {
           <h3 className = "fw-bold mb-4 text-uppercase">Log In</h3>
           
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          <form method="POST" onSubmit={preventDefault(logIn, target)}>
+          {/* <form method="POST" onSubmit={() => {preventDefault(logIn, target); routeChange();}}> */}
+          <form method="POST" onSubmit={routeChange}>
             <div className="field">
               {/* <label className="label" htmlFor="username">Username</label> */}
               <div className="form-outline form-white mb-4">
@@ -42,19 +68,18 @@ function LogInModal() {
             </div>
             <div className="field is-grouped">
               <div className="control p-2">
-                <button disabled={logInLoading} className="btn btn-outline-warning btn-lg px-5">Submit</button>
+                <button disabled={logInLoading}  className="btn btn-outline-warning btn-lg px-5">Log In</button>
               </div>
-              <div className="control p-2">
+              {/* <div className="control p-2">
                 <button
                   type="button"
                   onClick={() => dispatch(showModal(null))}
                   className="btn btn-outline-warning btn-lg px-5">Cancel</button>
-              </div>
+              </div> */}
 
-              <div>
-              <p className="mb-4 ">Don't have an account? <a href="/signup" className="btn btn-outline-warning btn-lg btn-sm">Sign Up</a>
-              </p>
-            </div>
+              <div className="control p-2">
+                <button className="btn btn-outline-warning btn-lg px-5">Sign Up</button>
+              </div>
       
             </div>
           </form>
@@ -64,7 +89,6 @@ function LogInModal() {
         </div>
         </div>
       </div>
-     
     
   );
 }

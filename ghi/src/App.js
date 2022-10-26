@@ -43,11 +43,11 @@ import Chat from './chat.js';
 import SignUpModal from './SignUpModal';
 import './index.css';
 import LogInModal from './LoginModal';
-// import Login from './login';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap-utilities.min.css"
-import "bootstrap/dist/css/bootstrap-utilities.min.css.map"
 import Nav from './Nav';
+import Footer from './Footer'
+
+
 
 function App() {
   return (
@@ -62,6 +62,7 @@ function App() {
 
         </Routes>
       </div>
+    <Footer />
     </BrowserRouter>
   );
 }
