@@ -29,4 +29,4 @@ class Auth(Authenticator):
         return account.username, AccountOut(**account.dict())
 
 
-auth = Auth(os.environ["SIGNING_KEY"])
+auth = Auth(os.environ.get("SIGNING_KEY"))

@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSignUpMutation } from './app/api';
 import { preventDefault } from './app/utils';
-import { showModal, updateField } from './app/accountSlice';
+import { updateField } from './app/accountSlice';
 import Notification from './Notification';
+import { useNavigate } from "react-router-dom";
 
 function SignUpModal() {
   const dispatch = useDispatch();
@@ -15,6 +16,15 @@ function SignUpModal() {
     [dispatch],
   );
 
+  let navigate = useNavigate();
+  const routeChange = async (e) =>{
+    // console.log("this is e", new FormData(e.target))
+    e.preventDefault()
+    await signUp({username, password, email, full_name})
+    let path = `/login`;
+    navigate(path);
+  }
+
   return (
     // <div className={modalClass} key="signup-modal">
     //   <div className="modal-background"></div>
@@ -25,7 +35,8 @@ function SignUpModal() {
         <div className="p-3 mb-2 bg-secondary ">
           <h3 className = "fw-bold mb-4 text-uppercase">Sign Up</h3>
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          <form method="POST" onSubmit={preventDefault(signUp, () => ({ username, password, email, full_name }))}>
+          {/* <form method="POST" onSubmit={preventDefault(signUp, () => ({ username, password, email, full_name }))}> */}
+          <form method="POST" onSubmit={routeChange}>
             <div className="field">
               <div className="form-outline form-white mb-4">
                 <input required onChange={field} value={username} name="username" className="form-control form-control-lg" type="username" placeholder="Username" />
@@ -49,14 +60,14 @@ function SignUpModal() {
             <div className="field is-grouped">
               <div className="control p-2">
                 {/* <button disabled={signUpLoading} className="button is-primary">Submit</button> */}
-                <button disabled={signUpLoading} className="btn btn-outline-warning btn-lg px-5">Submit</button>
+                <button disabled={signUpLoading}  className="btn btn-outline-warning btn-lg px-5">Submit</button>
               </div>
-              <div className="control p-2">
+              {/* <div className="control p-2">
                 <button
                   type="button"
                   onClick={() => dispatch(showModal(null))}
                   className="btn btn-outline-warning btn-lg px-5">Cancel</button>
-              </div>
+              </div> */}
             </div>
             
           </form>

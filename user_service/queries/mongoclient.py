@@ -3,7 +3,7 @@ import pymongo
 import os
 
 
-MONGO_URL = os.environ["DATABASE_URL"]
+MONGO_URL = os.environ.get("DATABASE_URL")
 client = pymongo.MongoClient(MONGO_URL)
 
 
