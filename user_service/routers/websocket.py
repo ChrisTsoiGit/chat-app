@@ -6,11 +6,8 @@ from fastapi import (
 )
 import os
 from jose import jwt
-from typing import List
 import json
 from datetime import datetime, timezone
-from routers.accounts import AccountToken
-from routers.auth import auth
 
 router = APIRouter()
 
@@ -27,6 +24,7 @@ class ConnectionManager:
     def __init__(self):
         self.active_connections = dict()
         self.current_message_id = 0
+
 
     async def connect(
         self,
