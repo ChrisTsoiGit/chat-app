@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogInMutation } from './app/api';
-import { eventTargetSelector as target, preventDefault } from './app/utils';
-import { showModal, updateField } from './app/accountSlice';
+// import { eventTargetSelector as target, preventDefault } from './app/utils';
+// import { showModal, updateField } from './app/accountSlice';
+import { updateField } from './app/accountSlice';
 import Notification from './Notification';
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +11,7 @@ function LogInModal() {
   const dispatch = useDispatch();
   const { username, password } = useSelector(state => state.account);
   // const modalClass = `modal ${show === LOG_IN_MODAL ? 'is-active' : ''}`;
-  const [logIn, { error, isLoading: logInLoading, data }] = useLogInMutation();
+  const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
   const field = useCallback(
     e => dispatch(updateField({field: e.target.name, value: e.target.value})),
     [dispatch],
@@ -18,9 +19,8 @@ function LogInModal() {
 
   let navigate = useNavigate();
   const routeChange = (e) =>{
-    console.log("this is e", new FormData(e.target))
+    // console.log("this is e", new FormData(e.target))
     e.preventDefault()
-    console.log("this is routchange")
     logIn(e.target)
     let path = `/chat`;
     navigate(path);

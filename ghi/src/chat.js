@@ -109,14 +109,17 @@ const Chat = () => {
         <form onSubmit={sendMessage}>
             <input value={message}
                   className="form-control "
+                  aria-label="Large"
                   type="text"
                   id="messageText"
                   autoComplete="off"
                   onChange={updateMessage}/>
+          
             <button disabled={!sendMessage}
-                    className="btn btn-primary">
+                    className="btn btn-outline-warning">
               Send
             </button>
+           
         </form> 
       </>
     )

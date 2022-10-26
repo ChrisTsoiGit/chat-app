@@ -5,7 +5,8 @@
 // import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from './app/accountSlice';
 // import LogInModal from './LoginModal';
 // import SignUpModal from './SignUpModal';
-// import { useEffect } from 'react';
+// import { useState} from 'react';
+// import LogoutModal from './LogoutModal';
 
 
 // function LoginButtons(props) {
@@ -45,14 +46,24 @@
 
 
 function Nav() {
+  // const [openLogin, setOpenLogin] = useState(false)
+  // const [openLogout, setOpenLogout] = useState(false)
   
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">     
       <div className="navbar-brand">
       <button className="btn btn-outline-warning " type="button">Home </button>
+      </div>
+      <div className="navbar-brand">
       <button className="btn btn-outline-warning " type="button">LogIn </button>
-      <button className="btn btn-outline-warning" type="button" >LogOut </button>
-      <button className="btn btn-outline-warning" type="button">SignUp </button>
+      </div>
+      <div className="navbar-brand">
+      <button className="btn btn-outline-warning " type="button">SignUp </button>
+      </div>
+      <div className="navbar-brand">
+      <button className="btn btn-outline-warning " type="button">  
+            Logout </button>
+            
       </div>
     </nav>
 
