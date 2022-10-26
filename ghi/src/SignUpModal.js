@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSignUpMutation } from './app/api';
 import { preventDefault } from './app/utils';
-import { showModal, updateField } from './app/accountSlice';
+import { updateField } from './app/accountSlice';
 import Notification from './Notification';
 import { useNavigate } from "react-router-dom";
 
@@ -60,7 +60,7 @@ function SignUpModal() {
             <div className="field is-grouped">
               <div className="control p-2">
                 {/* <button disabled={signUpLoading} className="button is-primary">Submit</button> */}
-                <button disabled={signUpLoading} onClick={routeChange} className="btn btn-outline-warning btn-lg px-5">Submit</button>
+                <button disabled={signUpLoading}  className="btn btn-outline-warning btn-lg px-5">Submit</button>
               </div>
               {/* <div className="control p-2">
                 <button

@@ -26,17 +26,12 @@ function LogInModal() {
     navigate(path);
   }
 
-  // const handleSumbit = () =>{
-  //    preventDefault(logIn, target)
-  // }
-
-  // }
-
-  // let signup = useNavigate();
-  // const signupRoute = () =>{
-  //   let path = `/signup`;
-  //   signup(path);
-  // }
+  let signupNavigate = useNavigate();
+      const signupChange = (e) =>{
+        e.preventDefault()
+        let path = `/signup`;
+        signupNavigate(path);
+      }
 
 
 
@@ -78,7 +73,7 @@ function LogInModal() {
               </div> */}
 
               <div className="control p-2">
-                <button className="btn btn-outline-warning btn-lg px-5">Sign Up</button>
+                <button onClick={signupChange} className="btn btn-outline-warning btn-lg px-5">Sign Up</button>
               </div>
       
             </div>

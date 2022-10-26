@@ -55,10 +55,10 @@ function Nav() {
       <button className="btn btn-outline-warning " onClick={signupChange} type="button">SignUp </button>
       </div>
       <div className="navbar-brand">
-      <button className="btn btn-outline-warning" onClick={LogoutChange} type="button">  Logout </button>
+      <button className="btn btn-outline-warning" onClick={chatChange} type="button">  ChatRoom </button>
       </div>
       <div className="navbar-brand">
-      <button className="btn btn-outline-warning" onClick={chatChange} type="button">  ChatRoom </button>
+      <button className="btn btn-outline-warning" onClick={LogoutChange} type="button">  Logout </button>
       </div>
     </nav>
 

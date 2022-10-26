@@ -15,14 +15,14 @@ function MessageRow(props) {
 }
 
 const Chat = () => {
-
   const [messages, setMessages] = useState([])
-  const [connected, setConnected] = useState(false)
+  // const [connected, setConnected] = useState(false)
   const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(true)
+  // const [loading, setLoading] = useState(true)
   const [trigger] = useLazyGetTokenQuery()
   const [socket, setSocket] = useState(null)
   const [username, setUsername] = useState("")
+  const [data, setData] = useState(false)
 
   useEffect(()=>{
     async function fetchData() {
@@ -34,25 +34,27 @@ const Chat = () => {
         const fullurl = url + "?token=" + token;
         const ws = new WebSocket(fullurl);
         setSocket(ws)
+        setData(true)
         return ws
 
       }).then((resp)=>{
-        console.log("this is the ws", resp)
-        resp.addEventListener('open', () => {
-          setConnected(true);
-          setLoading(false);
-        });
+        
+        // console.log("this is the ws", resp)
+        // resp.addEventListener('open', () => {
+        //   setConnected(true);
+        //   setLoading(false);
+        // });
     
-        resp.addEventListener('close', () => {
-          console.log("is closing")
-          setConnected(false);
-          setLoading(false);
-        });
+        // resp.addEventListener('close', () => {
+        //   console.log("is closing")
+        //   setConnected(false);
+        //   setLoading(false);
+        // });
     
-        resp.addEventListener('error', () => {
-          setConnected(false);
-          setLoading(false);
-        });
+        // resp.addEventListener('error', () => {
+        //   setConnected(false);
+        //   setLoading(false);
+        // });
     
 
         resp.addEventListener('message', message => {
@@ -62,11 +64,12 @@ const Chat = () => {
           
         });
       })
-
+      
     
   }
   fetchData()
-  },[]);
+  // window.location.reload()
+  },[trigger]);
 
 
   const sendMessage = (e) =>{
@@ -80,15 +83,12 @@ const Chat = () => {
   }
 
   return (
-      <>
-        <h1>Chat Room</h1>
-        <h2>Your Username: {username}</h2>
+    <>
+    {data ? (<>
+      <><h1>Chat Room</h1><h2>Your Username: {username}</h2><h2>Messages</h2><div className="container mt-4">
+      <div className="card mx-auto" style={{ background: '400 px' }}>
 
-        <h2>Messages</h2> 
-        <div className="container mt-4">
-        <div className="card mx-auto" style={{ background : '400 px' }}>
-        
-        <table className="table"  >
+        <table className="table">
           <thead>
             <tr>
               <th>Username</th>
@@ -99,29 +99,29 @@ const Chat = () => {
           <tbody>
             {messages.map(message => (
               <MessageRow key={message.username + message.timestamp}
-                          message={message} />
+                message={message} />
             ))}
           </tbody>
         </table>
-        </div>
-        </div>
+      </div>
+    </div><form onSubmit={sendMessage}>
+        <input value={message}
+          className="form-control "
+          aria-label="Large"
+          type="text"
+          id="messageText"
+          autoComplete="off"
+          onChange={updateMessage} />
 
-        <form onSubmit={sendMessage}>
-            <input value={message}
-                  className="form-control "
-                  aria-label="Large"
-                  type="text"
-                  id="messageText"
-                  autoComplete="off"
-                  onChange={updateMessage}/>
-          
-            <button disabled={!sendMessage}
-                    className="btn btn-outline-warning">
-              Send
-            </button>
-           
-        </form> 
-      </>
+        <button disabled={!sendMessage}
+          className="btn btn-outline-warning">
+          Send
+        </button>
+
+      </form></> 
+    </>) : (<></>)}
+    </>
+      
     )
   }
 
