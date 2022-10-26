@@ -9,10 +9,11 @@ fakeAccOut = AccountOut(
     id="1",
     email="email@email.com",
     username="username",
-    full_name = "full name",
+    full_name="full name",
 )
 
 fakeAccToken_none = None
+
 
 async def account_out_override():
     return fakeAccOut

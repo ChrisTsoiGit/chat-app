@@ -1,5 +1,6 @@
 from bson.objectid import ObjectId
 
+
 class PydanticObjectId(ObjectId):
     @classmethod
     def __get_validators__(cls):
@@ -10,6 +11,6 @@ class PydanticObjectId(ObjectId):
         if value:
             try:
                 ObjectId(value)
-            except:
+            except ValueError:
                 raise ValueError(f"Not a valid object id: {value}")
         return value
