@@ -94,7 +94,7 @@ pages:  # THIS STEP MUST BE NAME PAGES
 #     - python -m pytest
 
 lint-job:
-  image: python:3-bullseye
+  image: node:lts-bullseye
   stage: test
   script:
     - cd ghi
