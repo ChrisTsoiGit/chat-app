@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-
 app = FastAPI()
 # we supposed to have a blog page in the stretch goal
+
 @app.get("/me")
 async def get_blog():
     return {"msg": "This is my blog."}
