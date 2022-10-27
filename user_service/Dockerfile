@@ -8,6 +8,7 @@ COPY requirements.txt requirements.txt
 COPY main.py main.py
 COPY queries queries
 COPY routers routers
+COPY model.py model.py
 
 # Copy all of the subdirectories in your service's directory
 # Modify these instructions to do that
