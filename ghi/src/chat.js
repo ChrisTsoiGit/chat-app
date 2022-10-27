@@ -40,24 +40,7 @@ const Chat = () => {
         return ws
 
       }).then((resp)=>{
-        
-        // console.log("this is the ws", resp)
-        // resp.addEventListener('open', () => {
-        //   setConnected(true);
-        //   setLoading(false);
-        // });
-    
-        // resp.addEventListener('close', () => {
-        //   console.log("is closing")
-        //   setConnected(false);
-        //   setLoading(false);
-        // });
-    
-        // resp.addEventListener('error', () => {
-        //   setConnected(false);
-        //   setLoading(false);
-        // });
-    
+
 
         resp.addEventListener('message', message => {
           setMessages(current => 
