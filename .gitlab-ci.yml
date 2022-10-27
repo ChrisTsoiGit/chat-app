@@ -15,6 +15,7 @@ build-front-end-job:
     REACT_APP_API_HOST: ${REACT_APP_API_HOST}
     WEBSOCKET_HOST: ${WEBSOCKET_HOST}
   script:
+    - echo ${WEBSOCKET_HOST}
     - cd ghi
     - npm install
     - npm run build
