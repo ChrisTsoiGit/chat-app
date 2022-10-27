@@ -6,6 +6,6 @@ export function preventDefault(callback, selector) {
     };
 }
 
-export function eventTargetSelector(event) {
-    return event.target;
-}
+// export function eventTargetSelector(event) {
+//     return event.target;
+// }
