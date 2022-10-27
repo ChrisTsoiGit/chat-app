@@ -1,5 +1,4 @@
 # router.py
-from urllib import response
 from fastapi import (
     Depends,
     HTTPException,
@@ -11,7 +10,6 @@ from fastapi import (
 from queries.accounts import (
     AccountIn,
     AccountOut,
-    AccountPasswordDB,
     DuplicateAccountError,
     AccountStatus,
 )

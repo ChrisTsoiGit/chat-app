@@ -12,10 +12,11 @@ services:
     volumes:
       - ./user_service:/app
     environment:
-      SIGNING_KEY: 7d5893eb-bec1-4e0e-9be5-eb9af2d82cd9
-      DATABASE_URL: mongodb://user:userpw@mongo
-      DATABASE_NAME: userdb
+      SIGNING_KEY: ${SIGNING_KEY}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_NAME: ${DATABASE_NAME}
       WAIT_HOSTS: mongo:27017
+      MONGODB_URI: ${MONGODB_URI}
   
   react:
     image: node:lts-bullseye
