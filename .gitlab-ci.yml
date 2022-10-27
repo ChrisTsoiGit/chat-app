@@ -11,8 +11,8 @@ build-front-end-job:
   variables:
     # PUBLIC_URL: https://dgb-galv.gitlab.io/apis-with-sql
     PUBLIC_URL: https://chatapp12.gitlab.io/chat-app
-    MONGODB_URI: ${MONGODB_URI}
-    REACT_APP_API_HOST: https://newchat-heroku.herokuapp.com
+    # MONGODB_URI: ${MONGODB_URI}
+    REACT_APP_API_HOST: ${REACT_APP_API_HOST}
   script:
     - cd ghi
     - npm install
@@ -29,6 +29,8 @@ build-fastapi-api-image-job:  # RENAME THIS
   image: docker:20.10.16
   services:
     - docker:20.10.16-dind
+  variables:
+    DATABASE_URL: ${MONGODB_URI}
   script:
     - cd user_service
     - docker build -t ${CI_REGISTRY_IMAGE}/fastapi_api:latest .

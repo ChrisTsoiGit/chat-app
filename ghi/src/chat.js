@@ -31,7 +31,8 @@ const Chat = () => {
         setUsername(data.account.username)
         const token = data["access_token"];
         console.log("this is token", token)
-        const url = `ws://localhost:8000/chat`;
+        // const url = `ws://localhost:8000/chat`;
+        const url = `ws://${process.env.REACT_APP_API_HOST}/chat`;
         const fullurl = url + "?token=" + token;
         const ws = new WebSocket(fullurl);
         setSocket(ws)
