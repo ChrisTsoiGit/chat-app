@@ -11,6 +11,7 @@ build-front-end-job:
   variables:
     # PUBLIC_URL: https://dgb-galv.gitlab.io/apis-with-sql
     PUBLIC_URL: https://chatapp12.gitlab.io/chat-app
+    MONGODB_URI: ${MONGODB_URI}
     REACT_APP_API_HOST: https://newchat-heroku.herokuapp.com
   script:
     - cd ghi
