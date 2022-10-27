@@ -14,7 +14,10 @@ class Auth(Authenticator):
         # username (which could be an email)
         return accounts.get(username)
 
-    def get_account_getter(self, accounts: AccountQueries = Depends(),):
+    def get_account_getter(
+        self,
+        accounts: AccountQueries = Depends(),
+    ):
         # Return the accounts. That's it.
         return accounts
 

@@ -18,12 +18,12 @@ fakeAccToken_none = None
 async def account_out_override():
     return fakeAccOut
 
-app.dependency_overrides[
-    auth.try_get_current_account_data] = account_out_override
+
+app.dependency_overrides[auth.try_get_current_account_data] = account_out_override
 
 
 def test_get_account():
-    
-    response = client.get("/api/token", cookies={"test_token": ""})  
+
+    response = client.get("/api/token", cookies={"test_token": ""})
     assert response.status_code == 200
-    assert response.json() == fakeAccToken_none 
+    assert response.json() == fakeAccToken_none
