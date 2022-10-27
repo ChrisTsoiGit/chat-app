@@ -97,5 +97,7 @@ lint-job:
   image: python:3-bullseye
   stage: test
   script:
+    - npm run build
     - pip install flake8
     - flake8 user_service
+  
