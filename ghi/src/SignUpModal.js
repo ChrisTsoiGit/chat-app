@@ -28,56 +28,54 @@ function SignUpModal() {
   return (
     // <div className={modalClass} key="signup-modal">
     //   <div className="modal-background"></div>
-      <div className="ccontainer py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div className="card-body p-5 text-center">
-        <div className="p-3 mb-2 bg-secondary ">
-          <h3 className = "fw-bold mb-4 text-uppercase">Sign Up</h3>
-          { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
-          {/* <form method="POST" onSubmit={preventDefault(signUp, () => ({ username, password, email, full_name }))}> */}
-          <form method="POST" onSubmit={routeChange}>
-            <div className="field">
-              <div className="form-outline form-white mb-4">
-                <input required onChange={field} value={username} name="username" className="form-control form-control-lg" type="username" placeholder="Username" />
-              </div>
-            </div>
-            <div className="field">
-              <div className="form-outline form-white mb-4">
-                <input required onChange={field} value={password} name="password" className="form-control form-control-lg"  type="password" placeholder="Password" />
-              </div>
-            </div>
-            <div className="field">
-              <div className="form-outline form-white mb-4">
-                <input required onChange={field} value={email} name="email" className="form-control form-control-lg"  type="email" placeholder="Email" />
-              </div>
-            </div>
-            <div className="field">
-              <div className="form-outline form-white mb-4">
-                <input required onChange={field} value={full_name} name="full_name" className="form-control form-control-lg"  type="text" placeholder="Full Name" />
-              </div>
-            </div>
-            <div className="field is-grouped">
-              <div className="control p-2">
-                {/* <button disabled={signUpLoading} className="button is-primary">Submit</button> */}
-                <button disabled={signUpLoading}  className="btn btn-outline-warning btn-lg px-5">Submit</button>
-              </div>
-              {/* <div className="control p-2">
-                <button
-                  type="button"
-                  onClick={() => dispatch(showModal(null))}
-                  className="btn btn-outline-warning btn-lg px-5">Cancel</button>
-              </div> */}
-            </div>
-            
-          </form>
+    <div className="ccontainer py-10 h-100">
+    <div className="row d-flex justify-content-center align-items-center h-100">
+    <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+    <div className="card bg-warning mb-3 p-5 text-center">
+      <h3 className = "display-3 fw-bold mb-2 text-uppercase">Sign Up</h3>
+      { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
+      {/* <form method="POST" onSubmit={preventDefault(signUp, () => ({ username, password, email, full_name }))}> */}
+      <form method="POST" onSubmit={routeChange}>
+        <div className="field">
+          <div className="form-outline form-white mb-4">
+            <input required onChange={field} value={username} name="username" className="form-control form-control-lg" type="username" placeholder="Username" />
+          </div>
         </div>
-      </div>
-      </div>
-      </div>
-      </div>
-   
-  );
+        <div className="field">
+          <div className="form-outline form-white mb-4">
+            <input required onChange={field} value={password} name="password" className="form-control form-control-lg"  type="password" placeholder="Password" />
+          </div>
+        </div>
+        <div className="field">
+          <div className="form-outline form-white mb-4">
+            <input required onChange={field} value={email} name="email" className="form-control form-control-lg"  type="email" placeholder="Email" />
+          </div>
+        </div>
+        <div className="field">
+          <div className="form-outline form-white mb-4">
+            <input required onChange={field} value={full_name} name="full_name" className="form-control form-control-lg"  type="text" placeholder="Full Name" />
+          </div>
+        </div>
+        <div className="field is-grouped">
+          <div className="control p-2">
+            {/* <button disabled={signUpLoading} className="button is-primary">Submit</button> */}
+            <button disabled={signUpLoading}  className="btn btn-dark btn-lg px-5">Submit</button>
+          </div>
+          {/* <div className="control p-2">
+            <button
+              type="button"
+              onClick={() => dispatch(showModal(null))}
+              className="btn btn-outline-warning btn-lg px-5">Cancel</button>
+          </div> */}
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+
+);
 }
 
 export default SignUpModal;

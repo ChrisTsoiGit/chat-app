@@ -1,5 +1,6 @@
 import { useLogOutMutation } from './app/api';
 import { useNavigate } from "react-router-dom";
+import logo from "./assets/logo.png";
 
 function Nav() {
   // const [openLogin, setOpenLogin] = useState(false)
@@ -44,23 +45,27 @@ function Nav() {
       }
   
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">     
-      <div className="navbar-brand">
-      <button className="btn btn-outline-warning " onClick={homeChange} type="button">Home </button>
-      </div>
-      <div className="navbar-brand">
-      <button className="btn btn-outline-warning " onClick={LoginChange} type="button">LogIn </button>
-      </div>
-      <div className="navbar-brand">
-      <button className="btn btn-outline-warning " onClick={signupChange} type="button">SignUp </button>
-      </div>
-      <div className="navbar-brand">
-      <button className="btn btn-outline-warning" onClick={chatChange} type="button">  ChatRoom </button>
-      </div>
-      <div className="navbar-brand">
-      <button className="btn btn-outline-warning" onClick={LogoutChange} type="button">  Logout </button>
-      </div>
-    </nav>
+    <div class="container-fluid"> 
+      <nav className="navbar navbar-expand-lg "> 
+        <img className="logo m-2" src={logo} alt="" width="70px" height="40px" />
+          {/* <a class="navbar-brand" href="#">ChatApp</a>  */}
+          <div className="navbar-brand">
+          <button className="btn btn-outline-warning " onClick={homeChange} type="button">Home </button>
+          </div>
+          <div className="navbar-brand">
+          <button className="btn btn-outline-warning " onClick={LoginChange} type="button">LogIn </button>
+          </div>
+          <div className="navbar-brand">
+          <button className="btn btn-outline-warning " onClick={signupChange} type="button">SignUp </button>
+          </div>
+          <div className="navbar-brand">
+          <button className="btn btn-outline-warning" onClick={chatChange} type="button">  ChatRoom </button>
+          </div>
+          <div className="navbar-brand">
+          <button className="btn btn-outline-warning" onClick={LogoutChange} type="button">  Logout </button>
+        </div>
+      </nav>
+  </div>
 
   );
 };

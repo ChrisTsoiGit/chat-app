@@ -86,8 +86,8 @@ const Chat = () => {
   return (
     <>
     {data ? (<>
-      <><h1>Chat Room</h1><h2>Your Username: {username}</h2><h2>Messages</h2><div className="container mt-4">
-      <div className="card mx-auto" style={{ background: '400 px' }}>
+      <><h1 class="display-1 fw-bold ">Chat Room</h1><h2 class="display-5">Loged In As:<small class="display-5 text-warning fw-bold">{username}</small></h2><h2>Messages</h2><div className="container mt-4">
+      <div className="me-5card mx-auto" style={{ background: '400 px' }}>
 
         <table className="table">
           <thead>

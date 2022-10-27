@@ -40,9 +40,8 @@ function LogInModal() {
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div className="card-body p-5 text-center">
-        <div className="p-3 mb-2 bg-secondary ">
-          <h3 className = "fw-bold mb-4 text-uppercase">Log In</h3>
+        <div className="card bg-warning p-5 text-center">
+          <h3 className = "display-3 fw-bold mb-4 text-uppercase">Log In</h3>
           
           { error ? <Notification type="danger">{error.data.detail}</Notification> : null }
           {/* <form method="POST" onSubmit={() => {preventDefault(logIn, target); routeChange();}}> */}
@@ -61,7 +60,7 @@ function LogInModal() {
             </div>
             <div className="field is-grouped">
               <div className="control p-2">
-                <button disabled={logInLoading}  className="btn btn-outline-warning btn-lg px-5">Log In</button>
+                <button disabled={logInLoading}  className="btn btn-dark btn-lg px-5">Log In</button>
               </div>
               {/* <div className="control p-2">
                 <button
@@ -71,7 +70,7 @@ function LogInModal() {
               </div> */}
 
               <div className="control p-2">
-                <button onClick={signupChange} className="btn btn-outline-warning btn-lg px-5">Sign Up</button>
+                <button onClick={signupChange} className="btn btn-dark btn-lg px-5">Sign Up</button>
               </div>
       
             </div>
@@ -81,7 +80,6 @@ function LogInModal() {
         </div>
         </div>
         </div>
-      </div>
     
   );
 }
