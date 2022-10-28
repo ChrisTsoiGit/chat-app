@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from queries.accounts import AccountOut
+from queries.accounts import AccountQueries
 from main import app
 
 
@@ -18,7 +18,7 @@ def test_create_blog():
         def create(self, item):
             pass
 
-    app.dependency_overrides[AccountOut] = fakegetallaccsQuery
+    app.dependency_overrides[AccountQueries] = fakegetallaccsQuery
 
     response = client.post("/accounts", json=fakeblog)
 
