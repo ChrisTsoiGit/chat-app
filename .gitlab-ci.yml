@@ -75,6 +75,8 @@ release-fastapi-api-image-job:  # RENAME THIS
 ## DEPLOY THE UI
 pages:  # THIS STEP MUST BE NAME PAGES
   stage: deploy
+  variables:
+    WEBSOCKET_HOST: ${WEBSOCKET_HOST}
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   dependencies:
