@@ -75,6 +75,8 @@ release-fastapi-api-image-job:  # RENAME THIS
 ## DEPLOY THE UI
 pages:  # THIS STEP MUST BE NAME PAGES
   stage: deploy
+  variables:
+    WEBSOCKET_HOST: ${WEBSOCKET_HOST}
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   dependencies:
@@ -90,13 +92,13 @@ pages:  # THIS STEP MUST BE NAME PAGES
     paths:
       - public
 
-# user-service-unit-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script: 
-#     - cd user_service
-#     - pip install -r requirements.txt
-#     - python -m pytest
+user-service-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script: 
+    - cd user_service
+    - pip install -r requirements.txt
+    - python -m pytest
 
 # lint-job:
 #   image: python:3-bullseye
