@@ -6,6 +6,7 @@
 - Qingying Meng
 
 ## Intended market
+![GIF](/image/main.gif)
 
 Vintage classic chatroom which bring you back to the old time where everyone can gathering together in the same channel to exchange all their ideas. Great for making new friends! 
 
