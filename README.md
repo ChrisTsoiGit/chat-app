@@ -59,7 +59,7 @@ Qingying: test_get_blog_qingying.py
 
 
 ### Instrutions for starting a new chat in our public chatroom 
-Go to https://chatapp12.gitlab.io/chat-app/chat You will need to sign up first then log in to your account use your user name and password. Once you get into the chatroom,type in your words and press "send".
+Go to https://chatapp12.gitlab.io/chat-app/chat. You will need to sign up first then log in to your account use your user name and password. Once you get into the chatroom,type in your words and press "send".
 
 
 
