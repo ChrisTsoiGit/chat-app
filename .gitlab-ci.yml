@@ -13,7 +13,7 @@ build-front-end-job:
     PUBLIC_URL: https://chatapp12.gitlab.io/chat-app
     # MONGODB_URI: ${MONGODB_URI}
     REACT_APP_API_HOST: ${REACT_APP_API_HOST}
-    WEBSOCKET_HOST: ${WEBSOCKET_HOST}
+    WEBSOCKET_HOST: wss://newchat-heroku.herokuapp.com
   script:
     - echo ${WEBSOCKET_HOST}
     - cd ghi
