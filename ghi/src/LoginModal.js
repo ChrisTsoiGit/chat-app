@@ -23,7 +23,8 @@ function LogInModal() {
     e.preventDefault()
     await logIn(e.target)
     let path = `/chat`;
-    navigate(path);
+    // navigate(path);
+    console
   }
 
   let signupNavigate = useNavigate();
