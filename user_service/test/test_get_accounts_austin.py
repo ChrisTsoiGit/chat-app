@@ -5,21 +5,13 @@ from main import app
 
 client = TestClient(app)
 
-fakeblog = {
-    "id": "string",
-    "username": "username",
-    "email": "user@email.com",
-    "full_name": "string",
-}
-
 
 def test_create_blog():
     class fakegetallaccsQuery:
-        def create(self, item):
+        def fetch_all_accounts(self):
             pass
 
     app.dependency_overrides[AccountQueries] = fakegetallaccsQuery
-
-    response = client.post("/accounts", json=fakeblog)
-
+    response = client.get("/accounts")
     assert response.status_code == 200
+    app.dependency_overrides = {}
