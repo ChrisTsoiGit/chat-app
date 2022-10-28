@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
-from queries.accounts import AccountIn
+from queries.accounts import AccountQueries
 
 client = TestClient(app)
 
@@ -20,7 +20,7 @@ def test_create_account():
 
             pass
 
-    app.dependency_overrides[AccountIn] = fakeAccQuery
+    app.dependency_overrides[AccountQueries] = fakeAccQuery
     response = client.post("/api/accounts", json=fakeAcc)
     assert response.status_code == 200
     assert response.json() == fakeAccStatus

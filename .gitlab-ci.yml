@@ -92,18 +92,18 @@ pages:  # THIS STEP MUST BE NAME PAGES
     paths:
       - public
 
-# user-service-unit-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script: 
-#     - cd user_service
-#     - pip install -r requirements.txt
-#     - python -m pytest
+user-service-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  script: 
+    - cd user_service
+    - pip install -r requirements.txt
+    - python -m pytest
 
-# lint-job:
-#   image: python:3-bullseye
-#   stage: test
-#   script:
-#     - pip install flake8
-#     - flake8 user_service
+lint-job:
+  image: python:3-bullseye
+  stage: test
+  script:
+    - pip install flake8
+    - flake8 user_service
   
