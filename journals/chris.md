@@ -1,3 +1,40 @@
+## October 28, 2022
+
+Today, I worked on:
+
+Issues: 
+- When deploying my unit test doesn't work.
+- linting when deploying.
+
+Work completed:
+- Fixed the issues of my unit test and successfully pass through deploying.
+- Fixed the issues of lint-job test and successfully pass through deploying.
+- We are ready to present!
+
+## October 27, 2022
+
+Today, I worked on:
+
+Issues: 
+- When deploying websocket fails to access the token.
+- Unit test doesn't pass when deploying.
+
+Work completed:
+- Added CI/CD for deployment.
+- Fixed the issue of connecting local Mongodb database to production Mongodb database.
+- Fixed all the issues for deployment except my unit test.
+
+## October 26, 2022
+
+Today, I worked on:
+
+Issues: 
+- When deploying, issues for connecting local Mongodb database to production Mongodb database.
+
+Work completed:
+- Fixed websocket issues, we dont need to refreash our page everytime when I login. We added the asyn to the function.
+- Ready to deploy and started working on deploying.
+
 ## October 25, 2022
 
 Today, I worked on:

@@ -1,20 +1,26 @@
-AccountIn{
+AccountIn
+``` json
+{
 username*	Username[]
 email*	Email[]
 password*	Password[]
 full_name*	Full Name[]
  
 }
-
-AccountOut{
+```
+AccountOut
+``` json
+{
 id*	Id[]
 username*	Username[]
 email*	Email[]
 full_name*	Full Name[]
  
 }
-
-AccountToken{
+```
+AccountToken
+``` json
+{
 description:	
 Represents a bearer token.
 
@@ -23,8 +29,11 @@ token_type	Token Type[]
 account*	AccountOut{}
  
 }
+```
 
-Body_login_token_post{
+Body_login_token_post
+``` json
+{
 grant_type	Grant Type[]
 username*	Username[]
 password*	Password[]
@@ -33,8 +42,11 @@ client_id	Client Id[]
 client_secret	Client Secret[]
  
 }
+```
 
-Token{
+Token
+``` json
+{
 description:	
 Represents a bearer token.
 
@@ -42,6 +54,7 @@ access_token*	Access Token[]
 token_type	Token Type[]
  
 }
+```
 
 
 

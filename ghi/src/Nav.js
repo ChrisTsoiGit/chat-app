@@ -5,7 +5,7 @@ import logo from "./assets/logo.png";
 function Nav() {
   // const [openLogin, setOpenLogin] = useState(false)
   // const [openLogout, setOpenLogout] = useState(false)
-  const [logOut, {}] = useLogOutMutation();
+  const [logOut] = useLogOutMutation();
 
     let logOutNavigate = useNavigate();
       const LogoutChange = (e) =>{

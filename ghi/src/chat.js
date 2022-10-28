@@ -31,7 +31,9 @@ const Chat = () => {
         setUsername(data.account.username)
         const token = data["access_token"];
         console.log("this is token", token)
-        const url = `ws://localhost:8000/chat`;
+        // const url = `ws://localhost:8000/chat`;
+        const url = "wss://newchat-heroku.herokuapp.com/chat";
+        // const url = `${process.env.WEBSOCKET_HOST}/chat`
         const fullurl = url + "?token=" + token;
         const ws = new WebSocket(fullurl);
         setSocket(ws)
@@ -39,24 +41,7 @@ const Chat = () => {
         return ws
 
       }).then((resp)=>{
-        
-        // console.log("this is the ws", resp)
-        // resp.addEventListener('open', () => {
-        //   setConnected(true);
-        //   setLoading(false);
-        // });
-    
-        // resp.addEventListener('close', () => {
-        //   console.log("is closing")
-        //   setConnected(false);
-        //   setLoading(false);
-        // });
-    
-        // resp.addEventListener('error', () => {
-        //   setConnected(false);
-        //   setLoading(false);
-        // });
-    
+
 
         resp.addEventListener('message', message => {
           setMessages(current => 

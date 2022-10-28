@@ -6,6 +6,7 @@
 - Qingying Meng
 
 ## Intended market
+![GIF](/image/main.gif)
 
 Vintage classic chatroom which bring you back to the old time where everyone can gathering together in the same channel to exchange all their ideas. Great for making new friends! 
 
@@ -47,8 +48,18 @@ User Interface
 ### Unit tests for group members
 
 
+- Austin:
 
-### Other files
+- Chris: test_create_acct_chris.py
+
+- Echo: test_get_token_echo.py
+
+- Qingying: test_get_blog_qingying.py
+
+
+
+### Instrutions for starting a new chat in our public chatroom 
+Go to https://chatapp12.gitlab.io/chat-app/chat. You will need to sign up first then log in into your account use your user name and password. Once you get into the chatroom, type in your words and press "send".
 
 
 
