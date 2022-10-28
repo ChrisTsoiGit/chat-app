@@ -2,6 +2,7 @@ from fastapi import (
     APIRouter,
     WebSocket,
     WebSocketDisconnect,
+    Depends,
 )
 import os
 from jose import jwt
@@ -15,17 +16,18 @@ def timestamp():
     return datetime.now(timezone.utc).isoformat()
 
 
+def get_jwt():
+    return jwt
+
+
 class ConnectionManager:
     def __init__(self):
         self.active_connections = dict()
         self.current_message_id = 0
 
-    async def connect(
-        self,
-        websocket: WebSocket,
-    ):
+    async def connect(self, websocket: WebSocket, jwt_jose):
         await websocket.accept()
-        token_data = jwt.decode(
+        token_data = jwt_jose.decode(
             websocket.query_params["token"],
             os.environ["SIGNING_KEY"],
             algorithms=["HS256"],
@@ -81,9 +83,9 @@ manager = ConnectionManager()
 
 
 @router.websocket("/chat")
-async def websocket_endpoint(websocket: WebSocket):
+async def websocket_endpoint(websocket: WebSocket, jwt_jose=Depends(get_jwt)):
 
-    username = await manager.connect(websocket)
+    username = await manager.connect(websocket, jwt_jose)
     try:
         while True:
             message = await websocket.receive_text()

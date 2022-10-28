@@ -99,6 +99,8 @@ user-service-unit-test-job:
     - cd user_service
     - pip install -r requirements.txt
     - python -m pytest
+  variables: 
+    SIGNING_KEY: "abc123"
 
 lint-job:
   image: python:3-bullseye
