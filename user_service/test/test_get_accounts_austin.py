@@ -6,7 +6,7 @@ from main import app
 client = TestClient(app)
 
 
-def test_create_blog():
+def test_get_all_accounts():
     class fakegetallaccsQuery:
         def fetch_all_accounts(self):
             pass
