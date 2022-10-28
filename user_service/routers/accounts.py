@@ -48,7 +48,8 @@ router = APIRouter()
 # if the try_get_current_account_data existed, it will return the account
 @router.get("/api/token", response_model=AccountToken | None)
 async def get_token(
-    request: Request, account: AccountOut = Depends(auth.try_get_current_account_data)
+    request: Request,
+    account: AccountOut = Depends(auth.try_get_current_account_data),
 ) -> AccountToken | None:
     if auth.cookie_name in request.cookies:
         return {
