@@ -41,7 +41,7 @@ router = APIRouter()
 #     account_data: dict = Depends(auth.get_current_account_data),
 # ):
 #     return True
-    # return vacations.get_account_vacations(account_data)
+# return vacations.get_account_vacations(account_data)
 
 
 # get token/ to be protected by something
@@ -77,5 +77,3 @@ async def create_account(
     # token = await auth.login(response, request, form, accounts)
     # return AccountToken(account=account, **token.dict())
     return AccountStatus(successcreated=True)
-
-
