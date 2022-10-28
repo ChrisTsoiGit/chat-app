@@ -31,8 +31,8 @@ build-fastapi-api-image-job:  # RENAME THIS
   image: docker:20.10.16
   services:
     - docker:20.10.16-dind
-  variables:
-    DATABASE_URL: ${MONGODB_URI}
+  # variables:
+  #   DATABASE_URL: ${MONGODB_URI}
   script:
     - cd user_service
     - docker build -t ${CI_REGISTRY_IMAGE}/fastapi_api:latest .
