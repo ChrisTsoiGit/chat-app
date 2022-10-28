@@ -85,3 +85,13 @@ async def create_account(
 # @router.get("/api/accounts", response_model=AccountToken | HttpError)
 # async def get_user():
 #     return AccountOut
+
+@router.get("/accounts")
+def get_accounts(
+    request: Request,
+    response: Response,
+    accounts: AccountQueries = Depends()
+):
+    response = accounts.fetch_all_accounts()
+    print(response)
+    return response
