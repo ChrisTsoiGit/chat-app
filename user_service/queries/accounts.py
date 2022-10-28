@@ -60,7 +60,7 @@ class AccountQueries(Queries):
         accounts = []
         props = self.collection.find({})
         for document in props:
-            document['id'] = str(document['_id'])
+            document["id"] = str(document["_id"])
             accounts.append(AccountOut(**document))
             print(document)
         return accounts
