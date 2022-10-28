@@ -1,4 +1,3 @@
-from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from main import app
 
@@ -9,4 +8,4 @@ def test_logout():
     with TestClient(app) as client:
         response = client.delete("/token")
         assert response.status_code == 200
-        assert response.json() == True
+        assert response.json() is True
