@@ -55,3 +55,12 @@ class AccountQueries(Queries):
             raise DuplicateAccountError()
         props["id"] = str(props["_id"])
         return AccountPasswordDB(**props)
+
+    def fetch_all_accounts(self):
+        accounts = []
+        props = self.collection.find({})
+        for document in props:
+            document['id'] = str(document['_id'])
+            accounts.append(AccountOut(**document))
+            print(document)
+        return accounts

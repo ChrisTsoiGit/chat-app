@@ -5,6 +5,7 @@ from fastapi import (
     status,
     APIRouter,
     Request,
+    Response,
 )
 from queries.accounts import (
     AccountIn,
@@ -77,4 +78,18 @@ async def create_account(
     AccountForm(username=info.username, password=info.password)
     # token = await auth.login(response, request, form, accounts)
     # return AccountToken(account=account, **token.dict())
-    return AccountStatus(successcreated=True)
+    return AccountStatus(successcreated = True)
+
+# @router.get("/api/accounts", response_model=AccountToken | HttpError)
+# async def get_user():
+#     return AccountOut
+
+@router.get("/accounts")
+def get_accounts(
+    request: Request,
+    response: Response,
+    accounts: AccountQueries = Depends()
+):
+    response = accounts.fetch_all_accounts()
+    print(response)
+    return response
