@@ -48,13 +48,14 @@ User Interface
 ### Unit tests for group members
 
 
-- Austin:
+- Austin: test_get_accounts_austin.py
 
 - Chris: test_create_acct_chris.py
 
-- Echo: test_get_token_echo.py
+- Echo: test_websocket_echo.py
 
-- Qingying: test_get_blog_qingying.py
+- Qingying: test_logout_qingying.py
+
 
 
 
